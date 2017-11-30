@@ -25,6 +25,7 @@
     "@angular/router": "^5.0.0",
     "core-js": "^2.4.1",
     "front-matter": "^2.3.0",
+    "ipfs": "^0.26.0",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
@@ -47,6 +48,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.4.2",
+    "@types/ipfs": "git+https://git@github.com/zabirauf/ipfs-types.git"
   }
 }

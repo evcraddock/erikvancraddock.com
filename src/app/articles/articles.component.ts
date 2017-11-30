@@ -23,8 +23,8 @@ export class ArticlesComponent implements OnInit {
 
   loadArticles() {
     // this.articleService.getGitHubFiles('work', 'evcraddock', 'erikvancraddock-hugo', 'content/post').subscribe(files => {
-    this.articleService.getArticles('work').subscribe(files => {
-      this.articles  = files;
-    });
+    // this.articleService.getArticles('work').subscribe(files => {
+    //   this.articles  = files;
+    // });
   }
 }
