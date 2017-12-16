@@ -10,16 +10,25 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule } from '@angular/material';
-import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatMenuModule,
+  MatToolbarModule
+} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
-import { ArticlesComponent } from './articles/articles.component';
-import { GitHubService } from './shared/services/gitHub.service';
-import { ArticleService } from './shared/services/article.service';
+import {
+  ArticlesComponent,
+  ArticlesListItemComponent,
+  ArticleDetailComponent
+} from './articles/';
+import { ArticleService, ArticleResolver } from './shared/services/';
+import { MarkdownToHtmlPipe } from './shared/pipes/markdown-to-html/markdown-to-html.pipe';
 import { appRoutes } from '../routes';
 
 @NgModule({
@@ -27,7 +36,10 @@ import { appRoutes } from '../routes';
     AppComponent,
     NavComponent,
     HomeComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ArticlesListItemComponent,
+    ArticleDetailComponent,
+    MarkdownToHtmlPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -41,8 +53,8 @@ import { appRoutes } from '../routes';
     MatIconModule
   ],
   providers: [
-    GitHubService,
-    ArticleService
+    ArticleService,
+    ArticleResolver
   ],
   bootstrap: [AppComponent]
 })

@@ -23,9 +23,11 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@types/marked": "0.0.28",
     "core-js": "^2.4.1",
     "front-matter": "^2.3.0",
     "ipfs": "^0.26.0",
+    "marked": "^0.3.7",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },

@@ -1,6 +1,34 @@
 <h2>Article List</h2>
 
-<span *ngFor="let article of articles">
-    <!-- <a [href]="file.url">{{file.name}}</a> <br/> -->
-    {{ article.title }} <br/>
-</span>
+<div *ngIf="hasArticles()">
+  <span *ngFor="let article of articles">
+      <!-- <a [href]="file.url">{{file.name}}</a> <br/> -->
+      <!-- {{ article.title }} <br/> -->
+      <articles-listitem [article]="article"></articles-listitem>
+      <hr/>
+  </span>
+</div>
+
+
+
+<!-- <h1>Articles</h1>
+<hr/>
+<div class="row">
+  <div class="col-md-8">
+    <div *ngIf="hasMessages()" class="alert alert-info">
+      <span *ngFor="let message of messages">{{message}} <br/></span>
+    </div>
+
+    <div *ngIf="hasArticles()">
+      <ngb-pagination [collectionSize]="articles.length" [(page)]="page" 
+        [(pageSize)]="pagesize" (pageChange)="changePage()"></ngb-pagination>
+      <span *ngFor="let article of pagedArticles">
+        <news-listitem [article]="article"></news-listitem>
+        <hr/>
+      </span>
+    </div>
+  </div>
+  <div class="col-md-4">
+      <app-side-menu [linkPath]="linkPath" [links]="links"></app-side-menu>
+  </div>
+</div> -->

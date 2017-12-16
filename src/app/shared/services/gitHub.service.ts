@@ -13,15 +13,10 @@ export class GitHubService {
     constructor(private http: Http, private router: Router) {}
 
     getGitHubFileContent(url: string): Observable<string> {
-      //let content = '';
-
         return this.http.get(url).map((response: Response) => {
-            // return this.convertToGitHubFile(response.json());
             return response.json().content;
         })
         .catch(this.handleError);
-
-        // return content;
     }
 
     getGitHubFiles(keyword: string, owner: string, repo: string, path: string): Observable<IGitHubFile[]> {

@@ -21,10 +21,13 @@ export class ArticlesComponent implements OnInit {
     this.loadArticles();
   }
 
+  hasArticles() {
+    return this.articles.length > 0;
+  }
+
   loadArticles() {
-    // this.articleService.getGitHubFiles('work', 'evcraddock', 'erikvancraddock-hugo', 'content/post').subscribe(files => {
-    // this.articleService.getArticles('work').subscribe(files => {
-    //   this.articles  = files;
-    // });
+    this.articleService.getArticles().subscribe(articles => {
+      this.articles = articles;
+    });
   }
 }

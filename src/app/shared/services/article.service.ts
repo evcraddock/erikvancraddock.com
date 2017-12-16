@@ -1,63 +1,80 @@
-import { GitHubService } from './gitHub.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { IArticle } from '../models/article';
-import { IGitHubFile } from '../models/gitHubFile';
-import * as frontmatter from 'front-matter';
+import { environment } from '../../../environments/environment';
 import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class ArticleService {
 
-  public articles: ReplaySubject<IArticle[]> = new ReplaySubject(1);
+    private serverUrl = environment.apiEndpoint;
+    constructor(private http: Http) {}
 
-  constructor(private http: Http, private gitHubService: GitHubService) {}
+    getArticle(id: string): Observable<IArticle> {
+        return this.http.get(this.serverUrl + '/articles/' + id).map((response: Response) => {
+            return this.convertToArticle(response.json());
+        })
+        .catch(this.handleArticleError);
+    }
 
-  getArticles(category: string): Observable<IArticle[]> {
-    let files: IGitHubFile[] = [];
+    getArticles(params?: URLSearchParams): Observable<IArticle[]> {
+        const url = this.serverUrl + '/articles';
+        const request = this.http.get(url, { search: params });
 
-    this.gitHubService.getGitHubFiles(category, 'evcraddock', 'erikvancraddock-hugo', 'content/post').subscribe(ghfiles => {
-      files = ghfiles;
-      const farticles: IArticle[] = [];
+        return request.map((response: Response) => {
+            const articles: IArticle[] = [];
+            response.json().forEach(element => {
+                articles.push(this.convertToArticle(element));
+            });
 
-      files.forEach(file => {
-        this.getArticle(file).subscribe(article => {
-          farticles.push(article);
-          this.articles.next(farticles);
+            return articles;
+        })
+        .catch((error: Response) => {
+            let msg = '';
+            if (error.status === 404) {
+                msg = 'Not able to connect to the article server, try again later';
+            } else {
+                msg = error.statusText + ' - An unexpected error happened. Check the logs';
+            }
+
+            // this.errorService.updateMessage(msg);
+            return Promise.reject(error);
         });
-      });
-    });
+    }
 
-    return this.articles;
-  }
+    getBannerImage(article: IArticle) {
+        const url = this.serverUrl + '/images/';
+        return url + '/' + article.id + '/' + article.banner;
+    }
 
-  getArticle(file: IGitHubFile): Observable<IArticle> {
+    private handleArticleError(error: Response) {
+        let msg = '';
+        if (error.status === 404) {
+            msg = 'Not able to connect to the article server, try again later';
+        } else {
+            msg = error.statusText + ' - An unexpected error happened. Check the logs';
+        }
 
-    return this.http.get(file.url).map((response: Response) => {
-      const filecontent = response.json().content;
+        // this.errorService.updateMessage(msg);
+        return Promise.reject(error);
+    }
 
-      const article: IArticle = {
-        title: 'no title',
-        author: '',
-        banner: '',
-        categories: null,
-        content: null,
-        tags: null,
-        url: ''
-      };
+    private convertToArticle(articleObj: any): IArticle {
+        const article: IArticle = {
+            id: articleObj.id,
+            title: articleObj.title,
+            url: articleObj.url,
+            content: articleObj.content,
+            publishDate: articleObj.publishDate,
+            createdAt: articleObj.createdAt,
+            updatedAt: articleObj.updatedAt,
+            dataSource: articleObj.dataSource,
+            banner: articleObj.banner,
+            author: articleObj.author,
+            categories: articleObj.categories,
+            tags: articleObj.tags
+        };
 
-      const content: any = atob(filecontent);
-      const fmfile = frontmatter(content);
-
-      if (fmfile.attributes != null) {
-        article.title = fmfile.attributes['title'];
-        article.author = fmfile.attributes['author'];
-        article.banner = fmfile.attributes['banner'];
-        article.content = fmfile.attributes['content'];
-      }
-
-      return article;
-    });
-  }
+        return article;
+    }
 }
