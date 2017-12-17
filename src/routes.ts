@@ -7,5 +7,5 @@ export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'articles', component: ArticlesComponent},
     { path: 'articles/:permalink', component: ArticleDetailComponent, resolve: { article: ArticleResolver } },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
+    { path: '', redirectTo: 'articles', pathMatch: 'full' }
 ];

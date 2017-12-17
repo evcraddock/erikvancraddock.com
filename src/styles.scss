@@ -1,0 +1,42 @@
+@import '~@angular/material/theming';
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+@import 'variables';
+@import '../node_modules/font-awesome/scss/font-awesome';
+@include mat-core();
+
+$primary: mat-palette($mat-grey, 700);
+$accent:  mat-palette($mat-blue-grey, 700, A200, A400);
+$warn:    mat-palette($mat-red, 500);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+body {
+    font-family: $mat-font-family;
+    font-weight: normal;
+}
+
+$fa-font-path: '../node_modules/font-awesome/fonts';
+
+h1, h2, h3, h4 {
+    font-weight: normal;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .outer {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .outer:before,
+  .outer:after {
+    content: "";
+    display: table;
+  }
+  .outer:after {
+    clear: both;
+  }

@@ -1,19 +1,19 @@
-<div *ngIf="article" class="media">  
-    <div class="media-left">
-        <a *ngIf="article.banner" [routerLink]= "['/articles', article.url]">
-            <img class="media-object" style="width:150px;" alt="" [src]="getBanner()">
-        </a> 
-    </div>
-    <div class="media-body info">
-        <h3 class="media-heading"><a [routerLink]= "['/articles', article.url]">{{ article.title }}</a></h3>
-        <span *ngFor="let cat of article.categories">
-            <a [routerLink]="['/categories/', cat]"><i class="label label-default">{{ cat }}</i></a>
-        </span>
-        <br/><br/>
-        <span>
-            by {{ article.author }}
-        </span> |  
-        <span class="glyphicon glyphicon-time"></span> Posted on {{article.publishDate | date: 'shortDate'}}
-    </div>
-    
+<div *ngIf="article">  
+    <mat-card class="article-card"> 
+        <mat-card-content>
+            <span class="article-thumbnail">
+                    <a [routerLink]= "['/articles', article.url]">
+                        <img alt="" style="width:160px; height:90px;" [src]="getBanner()"> 
+                    </a>
+            </span>
+            <span class="article-content">
+                <h3><a [routerLink]= "['/articles', article.url]">{{ article.title }}</a></h3>
+                <p>
+                    <span>author: {{ article.author }}</span> |  
+                    <span>Posted on {{article.publishDate | date: 'shortDate'}}</span>
+                </p>   
+            </span>
+        </mat-card-content>
+        
+    </mat-card>
 </div>
