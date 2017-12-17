@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
 
-  public constructor (private domSanitizer: DomSanitizer, public matIconRegistry: MatIconRegistry) {
-      // add custom material icons
-      matIconRegistry.addSvgIcon('facebook', domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/F_icon.svg'));
+  public constructor (public matIconRegistry: MatIconRegistry) {
       matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
   }
   title = 'app';

@@ -8,9 +8,8 @@
             Musician, Programmer, Troublemaker
         </mat-card-subtitle>
     </mat-card-header>
-    <!-- <img mat-card-image id="avatar" src="http://erikvancraddock.com/css/images/avatar.jpg"> -->
+    <img mat-card-image [src]="getMostRecentImage()"> 
     <mat-card-content>
-        <hr/>
         <div class="social-media-icons">
             <a href="//github.com/evcraddock" target="_blank" title="GitHub"><mat-icon fontSet="fontawesome" fontIcon="fa-github"></mat-icon></a>
             <a href="//facebook.com/evcraddock" target="_blank" title="Facebook"><mat-icon fontSet="fontawesome" fontIcon="fa-facebook"></mat-icon></a>

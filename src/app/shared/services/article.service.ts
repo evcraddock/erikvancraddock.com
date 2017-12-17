@@ -42,11 +42,6 @@ export class ArticleService {
         });
     }
 
-    getBannerImage(article: IArticle) {
-        const url = this.serverUrl + '/images/';
-        return url + '/' + article.id + '/' + article.banner;
-    }
-
     private handleArticleError(error: Response) {
         let msg = '';
         if (error.status === 404) {

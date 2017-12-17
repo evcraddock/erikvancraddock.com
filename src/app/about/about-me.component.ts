@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ImageService } from '../shared/services/image.service';
 
 @Component({
   selector: 'app-about-me',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AboutMeComponent {
   title = 'app';
+
+  constructor(private imageService: ImageService) { }
+
+    getMostRecentImage() {
+        return this.imageService.getLatestImage('recent');
+    }
 }
