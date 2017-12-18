@@ -1,13 +1,17 @@
-<div class="">
+
 <mat-toolbar color="primary">
-    <span><a class="titlelink" [routerLink]="['/articles']">ERIK.VAN.CRADDOCK</a></span>
-    <button mat-button [routerLink] = "['/home']">
-      <mat-icon>home</mat-icon> Home
+    <span><a class="titlelink" [routerLink]="['/']">ERIK.VAN.CRADDOCK</a></span>
+    <span class="nav"></span>
+    <button mat-button [routerLink] = "['/family']">
+      Family
     </button>
-    <button mat-button [routerLink] = "['/articles']">
-       Articles
-      </button>
-    <span class="example-spacer"></span>
+    <button mat-button [routerLink] = "['/ideas']">
+      Ideas
+    </button>
+    <button mat-button [routerLink] = "['/work']">
+      Work
+    </button>
+    <span class="nav-spacer"></span>
     <!-- <button mat-icon-button>
       <mat-icon>favorite</mat-icon>
     </button>
@@ -15,4 +19,3 @@
       <mat-icon>delete</mat-icon>
     </button> -->
   </mat-toolbar>
-</div>

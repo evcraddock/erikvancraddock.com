@@ -34,7 +34,7 @@ import {
   ArticlesListItemComponent,
   ArticleDetailComponent
 } from './articles/';
-import { ArticleService, ArticleResolver, ImageService } from './shared/services/';
+import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
 import { MarkdownToHtmlPipe } from './shared/pipes/markdown-to-html/markdown-to-html.pipe';
 import { appRoutes } from '../routes';
 
@@ -67,6 +67,7 @@ import { appRoutes } from '../routes';
   providers: [
     ArticleService,
     ArticleResolver,
+    ArticlesResolver,
     ImageService,
     MatIconRegistry
   ],

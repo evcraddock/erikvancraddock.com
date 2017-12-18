@@ -1,25 +1,33 @@
-<div>
-    <div class="col-md-8">
-      <h2>
-          {{article.title}}
-      </h2>
-      <span>
-        <img *ngIf="article.banner" class="img-responsive" [src]="article?.banner" alt="">
-      </span>
-      <span class="pull-left">
-            by {{article.author}}
-          <span class="glyphicon glyphicon-time"></span>
-          Posted on {{article.publishDate | date: 'shortDate'}}
-      </span>
-      <br/><br/>
-      <span *ngFor="let cat of article.categories">
-        <a [routerLink]="['/', cat]"><i class="label label-default">{{ cat }}</i></a>
-      </span>
-      <hr>
-      <p [innerHtml]="article.content | MarkdownToHtml"></p>
-      <br/><br/>
+<div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
+  <div fxFlex="none" style="width:300px">
+    <app-about-me ></app-about-me>
+  </div>
+
+  <div fxFlex="none" style="width: 1000px">
+      <mat-card  >
+          <img mat-card-image *ngIf="article.banner" [src]="getBannerImage()" alt="">
+          <h2>
+              {{article.title}}
+          </h2>
+          <mat-card-header>
+            
+            <mat-card-title>
+                by {{article.author}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                Posted on {{article.publishDate | date: 'shortDate'}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p [innerHtml]="article.content | MarkdownToHtml"></p>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+  <div fxFlex="50" >
+      
     </div>
-    <!-- <div class="col-md-4">
-      <app-side-menu [links]="links"></app-side-menu>
-  </div> -->
 </div>
+
+

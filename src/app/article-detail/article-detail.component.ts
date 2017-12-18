@@ -2,17 +2,18 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IArticle } from '../shared/models/index';
+import { ImageService } from '../shared/services';
 
 @Component({
   selector: 'app-news-detail',
   templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.less']
+  styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit {
   article: IArticle = <IArticle>{};
 //   links: ILink[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private imageService: ImageService) { }
 
   ngOnInit() {
     this.loadData();
@@ -30,5 +31,9 @@ export class ArticleDetailComponent implements OnInit {
         // }
       });
     }
+  }
+
+  getBannerImage() {
+    return this.imageService.getBannerImage(this.article);
   }
 }

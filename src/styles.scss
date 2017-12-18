@@ -17,28 +17,24 @@ body {
     font-weight: normal;
 }
 
-.main-container {
-    // width: 1500px;
-}
-
 h1, h2, h3, h4 {
     font-weight: normal;
 }
 
-.example-spacer {
-    flex: 1 1 auto;
-  }
+.capitalize {
+    text-transform: capitalize; 
+}
 
-  .outer {
+.outer {
     max-width: 1320px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-  .outer:before,
-  .outer:after {
+}
+.outer:before,
+.outer:after {
     content: "";
     display: table;
-  }
-  .outer:after {
+}
+.outer:after {
     clear: both;
-  }
+}

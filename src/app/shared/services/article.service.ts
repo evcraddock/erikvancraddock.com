@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { IArticle } from '../models/article';
 import { environment } from '../../../environments/environment';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class ArticleService {
@@ -19,7 +19,7 @@ export class ArticleService {
 
     getArticles(params?: URLSearchParams): Observable<IArticle[]> {
         const url = this.serverUrl + '/articles';
-        const request = this.http.get(url, { search: params });
+        const request = this.http.get(url, { params });
 
         return request.map((response: Response) => {
             const articles: IArticle[] = [];

@@ -1,14 +1,22 @@
-
-<div class="row" fxLayout="row" fxLayout.xs="column" fxFlexFill>
-    <div fxFlex="25" class="sec1" fxFlex.xs="55">
+<div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="none" style="width:300px">
         <app-about-me></app-about-me>
     </div>
 
-    <div fxFlex="150" class="sec1" fxFlex.xs="55">
-      <div *ngIf="hasArticles()">
+    <div fxFlex="none" style="width: 800px">
+      <h3 class="capitalize">{{title}}</h3>
+      <div *ngIf="hasArticles()" style="width: 800px">
         <span *ngFor="let article of articles">
             <articles-listitem style="padding: 10px;" [article]="article"></articles-listitem>
         </span>
       </div>
+
+        <div *ngIf="!hasArticles()" style="width: 800px">
+            No {{title}} articles were found!
+        </div>
+    </div>
+
+    <div fxFlex="70">
+            
     </div>
 </div>
