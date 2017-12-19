@@ -32,6 +32,7 @@ import { HomeComponent } from './home/home.component';
 import {
   ArticlesComponent,
   ArticlesListItemComponent,
+  ArticlesSummaryItemComponent,
   ArticleDetailComponent
 } from './articles/';
 import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
@@ -46,6 +47,7 @@ import { appRoutes } from '../routes';
     AboutMeComponent,
     ArticlesComponent,
     ArticlesListItemComponent,
+    ArticlesSummaryItemComponent,
     ArticleDetailComponent,
     MarkdownToHtmlPipe,
   ],

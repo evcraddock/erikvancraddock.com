@@ -1,1 +1,1 @@
-export { IArticle } from './article';
+export { IArticle, Article } from './article';

@@ -1,14 +1,19 @@
-export interface IGithubArticle {
+export interface IArticle {
+  id: string;
   title: string;
   url: string;
   content: string;
+  publishDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  dataSource: string;
   banner: string;
   author: string;
   categories: string[];
   tags: string[];
 }
 
-export interface IArticle {
+export class Article implements IArticle {
   id: string;
   title: string;
   url: string;

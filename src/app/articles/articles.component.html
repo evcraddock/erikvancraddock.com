@@ -3,20 +3,24 @@
         <app-about-me></app-about-me>
     </div>
 
-    <div fxFlex="none" style="width: 800px">
-      <h3 class="capitalize">{{title}}</h3>
-      <div *ngIf="hasArticles()" style="width: 800px">
-        <span *ngFor="let article of articles">
-            <articles-listitem style="padding: 10px;" [article]="article"></articles-listitem>
-        </span>
-      </div>
+    <div fxFlex="none" style="width: 700px">
+        <h3 class="capitalize">{{title}}</h3>
+        <div *ngIf="hasArticles()">
+            <span *ngFor="let article of articles">
+                <articles-listitem style="padding: 5px;" [article]="article"></articles-listitem>
+            </span>
+        </div>
 
-        <div *ngIf="!hasArticles()" style="width: 800px">
+        <div *ngIf="!hasArticles()">
             No {{title}} articles were found!
         </div>
     </div>
 
-    <div fxFlex="70">
+    <div fxFlex="none" style="width:300px">
+            
+    </div>
+
+    <div fxFlex="50">
             
     </div>
 </div>

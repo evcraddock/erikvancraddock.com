@@ -1,7 +1,9 @@
-.article-thumbnail {
-    float: left;
-    padding: 10px;
-}
+@import '../articles/articles.component.scss';
+
+// .article-thumbnail {
+//     float: left;
+//     padding: 10px;
+// }
 
 .mat-card {
     padding: 1px;
@@ -9,5 +11,6 @@
 }
 
 .mat-card-content {
-    display: initial;
+    display: inline-flex;
 }
+
