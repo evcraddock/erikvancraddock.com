@@ -3,7 +3,8 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { URLSearchParams } from '@angular/http';
 import { ArticleService } from '../shared/services/article.service';
 import { IArticle } from '../shared/models/article';
-import { Router, ActivatedRoute,NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-articles',
@@ -12,6 +13,10 @@ import { Router, ActivatedRoute,NavigationEnd } from '@angular/router';
 export class ArticlesComponent implements OnInit {
   public title = 'Articles';
   public articles: IArticle[] = [];
+  public pagedArticles: IArticle[] = [];
+  public pagesize = 10;
+  public pageIndex = 0;
+  public pageEvent: PageEvent;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -31,6 +36,7 @@ export class ArticlesComponent implements OnInit {
       this.articles = [];
       this.title = params['category'];
       this.loadArticles();
+      this.changePage();
     });
   }
 
@@ -46,5 +52,15 @@ export class ArticlesComponent implements OnInit {
         }
       });
     }
+  }
+
+  changePage(event?: PageEvent) {
+    if (event != null) {
+      this.pageIndex = event.pageIndex;
+    }
+    const startIndex = this.pageIndex * this.pagesize;
+    const endIndex = startIndex + this.pagesize;
+
+    this.pagedArticles = this.articles.slice(startIndex, endIndex);
   }
 }
