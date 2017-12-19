@@ -2,16 +2,16 @@
     <mat-card class="article-card"> 
         <mat-card-content>
             <span class="article-thumbnail">
-                    <a [routerLink]= "['/articles', article.url]">
-                        <img alt="" style="width:160px; height:90px;" [src]="getBanner()"> 
-                    </a>
+                <a [routerLink]= "['/articles', article.url]">
+                    <img alt="" style="width:160px; height:90px;" [src]="getBanner()"> 
+                </a>
             </span>
             <span class="article-content">
-                <h3><a [routerLink]= "['/articles', article.url]">{{ article.title }}</a></h3>
-                <p>
-                    <span>author: {{ article.author }}</span> |  
-                    <span>Posted on {{article.publishDate | date: 'shortDate'}}</span>
-                </p>   
+                <a [routerLink]= "['/articles', article.url]"><h3 class="article-title">{{ article.title }}</h3></a>
+                <span class="icon-content"><mat-icon>event_note</mat-icon>  {{article.publishDate | date: 'longDate'}}</span>  
+                <span class="icon-content" *ngFor="let cat of article.categories">
+                    <mat-icon>label</mat-icon> <a class="capitalize" [routerLink]="['/', cat]">{{cat}}</a>
+                </span>
             </span>
         </mat-card-content>
         

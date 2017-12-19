@@ -1,31 +1,32 @@
 <div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
-  <div fxFlex="none" style="width:300px">
-    <app-about-me ></app-about-me>
-  </div>
+    <div fxFlex="none" style="width:300px">
+        <app-about-me ></app-about-me>
+    </div>
 
-  <div fxFlex="none" style="width: 1000px">
-      <mat-card  >
-          <img mat-card-image *ngIf="article.banner" [src]="getBannerImage()" alt="">
-          <h2>
-              {{article.title}}
-          </h2>
-          <mat-card-header>
-            
-            <mat-card-title>
-                by {{article.author}}
-            </mat-card-title>
-            <mat-card-subtitle>
-                Posted on {{article.publishDate | date: 'shortDate'}}
-            </mat-card-subtitle>
-          </mat-card-header>
-          
-          <mat-card-content>
-            <p [innerHtml]="article.content | MarkdownToHtml"></p>
-          </mat-card-content>
-      </mat-card>
-  </div>
+    <div fxFlex="none" style="width: 1000px">
+        <mat-card class="article-card">
+            <img mat-card-image *ngIf="article.banner" [src]="getBannerImage()" alt="">
+            <span class="article-header">
+                <h1 class="article-title">{{ article.title }}</h1>
+            </span>
+            <mat-card-content>
+                <span class="icon-content"><mat-icon>person</mat-icon>{{ article.author }}</span> 
+                <span class="icon-content"><mat-icon>event_note</mat-icon>{{article.publishDate | date: 'longDate'}}</span> 
+                <span class="icon-content" *ngFor="let cat of article.categories">
+                    <mat-icon>label</mat-icon> <a class="capitalize" [routerLink]="['/', cat]">{{cat}}</a>
+                </span>
+                <p [innerHtml]="article.content | MarkdownToHtml"></p>
+            </mat-card-content>
+            <mat-card-actions>
+                <span class="icon-content" style="float: right;" *ngFor="let tag of article.tags">
+                    <mat-icon>label_outline</mat-icon> {{tag}}
+                </span>
+                <br/>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 
-  <div fxFlex="50" >
+    <div fxFlex="50" >
       
     </div>
 </div>
