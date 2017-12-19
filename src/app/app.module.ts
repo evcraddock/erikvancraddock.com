@@ -20,7 +20,8 @@ import {
   MatToolbarModule,
   MatGridListModule,
   MatChipsModule,
-  MatIconRegistry
+  MatIconRegistry,
+  MatPaginatorModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -64,6 +65,7 @@ import { appRoutes } from '../routes';
     MatIconModule,
     MatGridListModule,
     MatChipsModule,
+    MatPaginatorModule,
     FlexLayoutModule
   ],
   providers: [
