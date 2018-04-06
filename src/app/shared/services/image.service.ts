@@ -6,12 +6,17 @@ import { IArticle } from '../models/article';
 
 @Injectable()
 export class ImageService {
-    private serverUrl = environment.apiEndpoint;
+    public serverUrl = environment.apiEndpoint;
     constructor(private http: Http) {}
 
     getBannerImage(article: IArticle) {
         const url = this.serverUrl + '/images/';
         return url + '/' + article.id + '/' + article.banner;
+    }
+
+    getImage(articleId: string, imageName: string) {
+        const url = this.serverUrl + '/images/';
+        return url + '/' + articleId + '/' + imageName;
     }
 
     getLatestImage(collectionName: string) {

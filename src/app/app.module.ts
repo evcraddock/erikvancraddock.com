@@ -37,7 +37,7 @@ import {
   ArticleDetailComponent
 } from './articles/';
 import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
-import { MarkdownToHtmlPipe } from './shared/pipes/markdown-to-html/markdown-to-html.pipe';
+import { MarkdownToHtmlPipe, SafePipe } from './shared/pipes';
 import { appRoutes } from '../routes';
 
 @NgModule({
@@ -51,6 +51,7 @@ import { appRoutes } from '../routes';
     ArticlesSummaryItemComponent,
     ArticleDetailComponent,
     MarkdownToHtmlPipe,
+    SafePipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

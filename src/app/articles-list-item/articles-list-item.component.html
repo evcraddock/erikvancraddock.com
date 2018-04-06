@@ -1,11 +1,11 @@
 <div *ngIf="article">  
-    <mat-card class="article-card"> 
+    <!-- <mat-card class="article-card"> 
         <mat-card-content>
-            <span class="article-thumbnail">
-                <a [routerLink]= "['/articles', article.url]">
-                    <img alt="" style="width:160px; height:90px;" [src]="getBanner()"> 
-                </a>
-            </span>
+            <a [routerLink]= "['/articles', article.url]" class="thumbnail">
+                <span class="thumbnail-image" [style.background-image]="bannerUrl">
+                </span>
+            </a>
+            
             <span class="article-content">
                 <a [routerLink]= "['/articles', article.url]"><h3 class="article-title">{{ article.title }}</h3></a>
                 <span class="icon-content"><mat-icon>event_note</mat-icon>  {{article.publishDate | date: 'longDate'}}</span>  
@@ -15,5 +15,30 @@
             </span>
         </mat-card-content>
         
-    </mat-card>
-</div>
+    </mat-card> -->
+    
+    <article class="article-list archive-type-post">
+        <div class="article-list-inner">
+            <div class="article-list-thumbnail">
+                
+                <a [routerLink]= "['/articles', article.url]" class="thumbnail">
+                    <span class="thumbnail-image" [style.background-image]="bannerUrl">
+                    </span>
+                </a>
+                
+            </div>
+            <header class="article-list-header">
+                <h1 itemprop="name">
+                <a class="article-list-title" [routerLink]= "['/articles', article.url]">{{ article.title }}</a>
+                </h1>
+                <!-- <div class="article-list-date">
+                    <i class="fa fa-calendar"></i>
+                    <time datetime="2012-09-05 00:00:00 +0000 UTC" itemprop="datePublished">2012-09-05</time>
+                </div> -->
+                <span class="icon-content"><mat-icon>event_note</mat-icon>  {{article.publishDate | date: 'longDate'}}</span>  
+                <span class="icon-content" *ngFor="let cat of article.categories">
+                    <mat-icon>label</mat-icon> <a class="capitalize" [routerLink]="['/', cat]">{{cat}}</a>
+                </span>
+            </header>
+        </div>
+    </article>

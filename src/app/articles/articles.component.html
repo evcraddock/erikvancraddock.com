@@ -3,7 +3,7 @@
         <app-about-me></app-about-me>
     </div>
 
-    <div fxFlex="none" style="width: 700px">
+    <div fxFlex="none" style="width: 800px">
         <h3 class="capitalize">{{title}}</h3>
         <div *ngIf="articles.length > pagesize">
             <mat-paginator
@@ -15,7 +15,7 @@
         <div *ngIf="hasArticles()">
             
             <span *ngFor="let article of pagedArticles">
-                <articles-listitem style="padding: 5px;" [article]="article"></articles-listitem>
+                <articles-listitem [article]="article"></articles-listitem>
             </span>
         </div>
 

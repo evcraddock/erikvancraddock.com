@@ -3,7 +3,7 @@
         <app-about-me ></app-about-me>
     </div>
 
-    <div fxFlex="none" style="width: 1000px">
+    <div fxFlex="none" style="width: 800px">
         <mat-card class="article-card">
             <img mat-card-image *ngIf="article.banner" [src]="getBannerImage()" alt="">
             <span class="article-header">
@@ -15,7 +15,8 @@
                 <span class="icon-content" *ngFor="let cat of article.categories">
                     <mat-icon>label</mat-icon> <a class="capitalize" [routerLink]="['/', cat]">{{cat}}</a>
                 </span>
-                <p [innerHtml]="article.content | MarkdownToHtml"></p>
+                <!-- <p class="article-entry" [innerHtml]="article.content | MarkdownToHtml"></p> -->
+                <p [innerHtml]="articleHtml"></p>
             </mat-card-content>
             <mat-card-actions>
                 <span class="icon-content" style="float: right;" *ngFor="let tag of article.tags">
