@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { IArticle } from '../models/article';
 import { environment } from '../../../environments/environment';
 import { Http, Response, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs';
+import { map, catchError } from "rxjs/operators";
 
 @Injectable()
 export class ArticleService {
@@ -11,35 +12,34 @@ export class ArticleService {
     constructor(private http: Http) {}
 
     getArticle(id: string): Observable<IArticle> {
-        return this.http.get(this.serverUrl + '/articles/' + id).map((response: Response) => {
+        return this.http.get(this.serverUrl + '/articles/' + id).pipe(map((response: Response) => {
             return this.convertToArticle(response.json());
-        })
-        .catch(this.handleArticleError);
+        }),
+        catchError(this.handleArticleError));
     }
 
     getArticles(params?: URLSearchParams): Observable<IArticle[]> {
         const url = this.serverUrl + '/articles';
         const request = this.http.get(url, { params });
 
-        return request.map((response: Response) => {
+        return request.pipe(map((response: Response) => {
             const articles: IArticle[] = [];
             response.json().forEach(element => {
                 articles.push(this.convertToArticle(element));
             });
 
             return articles;
-        })
-        .catch((error: Response) => {
+        }),
+        catchError((error: Response) => {
             let msg = '';
             if (error.status === 404) {
                 msg = 'Not able to connect to the article server, try again later';
             } else {
                 msg = error.statusText + ' - An unexpected error happened. Check the logs';
             }
-
-            // this.errorService.updateMessage(msg);
+            
             return Promise.reject(error);
-        });
+        }));
     }
 
     private handleArticleError(error: Response) {
@@ -50,7 +50,6 @@ export class ArticleService {
             msg = error.statusText + ' - An unexpected error happened. Check the logs';
         }
 
-        // this.errorService.updateMessage(msg);
         return Promise.reject(error);
     }
 
