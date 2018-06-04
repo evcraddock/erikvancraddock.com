@@ -1,9 +1,9 @@
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/throw';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/first';
+// import 'rxjs/add/operator/do';
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/observable/throw';
 
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +24,7 @@ import {
   MatPaginatorModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about/about-me.component';
@@ -66,8 +66,8 @@ import { appRoutes } from '../routes';
     MatIconModule,
     MatGridListModule,
     MatChipsModule,
-    MatPaginatorModule,
-    FlexLayoutModule
+    MatPaginatorModule
+    // FlexLayoutModule
   ],
   providers: [
     ArticleService,

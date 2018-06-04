@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   githubUrl: 'https://api.github.com',
-  apiEndpoint: 'http://localhost:9000'
+  apiEndpoint: 'http://localhost:8080/api'
 };
