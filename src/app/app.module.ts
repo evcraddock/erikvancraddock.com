@@ -24,7 +24,7 @@ import {
   MatPaginatorModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { AboutMeComponent } from './about/about-me.component';
@@ -66,8 +66,8 @@ import { appRoutes } from '../routes';
     MatIconModule,
     MatGridListModule,
     MatChipsModule,
-    MatPaginatorModule
-    // FlexLayoutModule
+    MatPaginatorModule,
+    FlexLayoutModule
   ],
   providers: [
     ArticleService,

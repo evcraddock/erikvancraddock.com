@@ -3,7 +3,7 @@ import { IArticle } from '../models/article';
 import { environment } from '../../../environments/environment';
 import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
 
 @Injectable()
 export class ArticleService {
@@ -14,8 +14,8 @@ export class ArticleService {
     getArticle(id: string): Observable<IArticle> {
         return this.http.get(this.serverUrl + '/articles/' + id).pipe(map((response: Response) => {
             return this.convertToArticle(response.json());
-        }));
-        // .catch(this.handleArticleError));
+        }),
+        catchError(this.handleArticleError));
     }
 
     getArticles(params?: URLSearchParams): Observable<IArticle[]> {
@@ -29,18 +29,17 @@ export class ArticleService {
             });
 
             return articles;
+        }),
+        catchError((error: Response) => {
+            let msg = '';
+            if (error.status === 404) {
+                msg = 'Not able to connect to the article server, try again later';
+            } else {
+                msg = error.statusText + ' - An unexpected error happened. Check the logs';
+            }
+            
+            return Promise.reject(error);
         }));
-        // .catch((error: Response) => {
-        //     let msg = '';
-        //     if (error.status === 404) {
-        //         msg = 'Not able to connect to the article server, try again later';
-        //     } else {
-        //         msg = error.statusText + ' - An unexpected error happened. Check the logs';
-        //     }
-
-        //     // this.errorService.updateMessage(msg);
-        //     return Promise.reject(error);
-        // }));
     }
 
     private handleArticleError(error: Response) {
@@ -51,7 +50,6 @@ export class ArticleService {
             msg = error.statusText + ' - An unexpected error happened. Check the logs';
         }
 
-        // this.errorService.updateMessage(msg);
         return Promise.reject(error);
     }
 
