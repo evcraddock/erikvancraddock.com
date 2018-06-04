@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { URLSearchParams, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+
 
 import { IArticle } from '../models/index';
 import { ArticleService } from './article.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ArticlesResolver implements Resolve<any> {
@@ -16,9 +17,9 @@ export class ArticlesResolver implements Resolve<any> {
             params.set('categories', route.params['category']);
         }
 
-        return this.articleService.getArticles(params)
-        .catch(error => {
-            return Observable.of(error);
-        });
+        return this.articleService.getArticles(params);
+        // .catch(error => {
+        //     return Observable.of(error);
+        // });
     }
 }

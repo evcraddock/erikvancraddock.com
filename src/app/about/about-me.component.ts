@@ -14,6 +14,6 @@ export class AboutMeComponent implements OnInit {
   constructor(private imageService: ImageService) { }
 
   ngOnInit(): void {
-    this.latestImage = this.imageService.getLatestImage('recent');
+    // this.latestImage = this.imageService.getLatestImage('recent');
   }
 }
