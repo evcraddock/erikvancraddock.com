@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { IArticle } from '../models/article';
 import { environment } from '../../../environments/environment';
-import { Http, Response, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from "rxjs/operators";
+import { AuthorizationService } from './authorization.service';
 
 @Injectable()
 export class ArticleService {
 
     private serverUrl = environment.apiEndpoint;
-    constructor(private http: Http) {}
+    constructor(private http: HttpClient, private authorizationService: AuthorizationService) {}
 
     getArticle(id: string): Observable<IArticle> {
         return this.http.get(this.serverUrl + '/articles/' + id).pipe(map((response: Response) => {
@@ -18,28 +19,37 @@ export class ArticleService {
         catchError(this.handleArticleError));
     }
 
-    getArticles(params?: URLSearchParams): Observable<IArticle[]> {
+    getArticles(params?: HttpParams): Observable<IArticle[]> {
         const url = this.serverUrl + '/articles';
-        const request = this.http.get(url, { params });
+        
+        let token = this.authorizationService.getToken();
+        
 
-        return request.pipe(map((response: Response) => {
-            const articles: IArticle[] = [];
-            response.json().forEach(element => {
-                articles.push(this.convertToArticle(element));
-            });
 
-            return articles;
-        }),
-        catchError((error: Response) => {
-            let msg = '';
-            if (error.status === 404) {
-                msg = 'Not able to connect to the article server, try again later';
-            } else {
-                msg = error.statusText + ' - An unexpected error happened. Check the logs';
-            }
-            
-            return Promise.reject(error);
+        const headers = new HttpHeaders();
+        headers.set('Authorization', 'bearer ' + token)
+        
+        const request = this.http.get(url, { 
+            responseType: 'json',
+            params: params,
+            headers: headers
+        });
+
+        return request.pipe(
+            map((response: HttpResponse<IArticle[]>) => {
+            return response.body;
         }));
+        // ,
+        // catchError((error: Response) => {
+        //     let msg = '';
+        //     if (error.status === 404) {
+        //         msg = 'Not able to connect to the article server, try again later';
+        //     } else {
+        //         msg = error.statusText + ' - An unexpected error happened. Check the logs';
+        //     }
+            
+        //     return Promise.reject(error);
+        // }));
     }
 
     private handleArticleError(error: Response) {

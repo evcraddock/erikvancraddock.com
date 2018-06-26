@@ -6,13 +6,14 @@ import { URLSearchParams, Response } from '@angular/http';
 import { IArticle } from '../models/index';
 import { ArticleService } from './article.service';
 import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class ArticlesResolver implements Resolve<any> {
     constructor(private articleService: ArticleService) {}
 
     resolve(route: ActivatedRouteSnapshot) {
-        const params = new URLSearchParams();
+        const params = new HttpParams();
         if (route.params['category']) {
             params.set('categories', route.params['category']);
         }

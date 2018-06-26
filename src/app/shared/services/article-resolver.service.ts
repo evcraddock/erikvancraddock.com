@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { URLSearchParams, Response } from '@angular/http';
-
 import { IArticle } from '../models/index';
 import { ArticleService } from './article.service';
 import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class ArticleResolver implements Resolve<any> {
@@ -19,7 +18,8 @@ export class ArticleResolver implements Resolve<any> {
             // });
         }
 
-        const params = new URLSearchParams();
+        // const params = new URLSearchParams();
+        const params = new HttpParams();
         if (route.params['permalink']) {
             params.set('url', route.params['permalink']);
         }

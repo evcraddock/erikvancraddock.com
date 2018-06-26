@@ -8,7 +8,7 @@
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -37,6 +37,7 @@ import {
   ArticleDetailComponent
 } from './articles/';
 import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
+import { AuthorizationService } from './shared/services/authorization.service';
 import { MarkdownToHtmlPipe, SafePipe } from './shared/pipes';
 import { appRoutes } from '../routes';
 
@@ -55,7 +56,7 @@ import { appRoutes } from '../routes';
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
-    HttpModule,
+    // HttpModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -74,7 +75,8 @@ import { appRoutes } from '../routes';
     ArticleResolver,
     ArticlesResolver,
     ImageService,
-    MatIconRegistry
+    MatIconRegistry,
+    AuthorizationService
   ],
   bootstrap: [AppComponent]
 })
