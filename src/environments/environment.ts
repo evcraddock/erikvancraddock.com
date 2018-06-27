@@ -8,7 +8,7 @@ export const environment = {
   githubUrl: 'https://api.github.com',
   apiEndpoint: 'http://localhost:8080/api',
   authendpoint: 'https://erikvan.auth0.com/oauth/token',
-  authclientid: 'w0yNpmOjCm4g1oKqGc6Ofwfa0lbzt5uo',
-  authsecret: 'nKq7pz1XLzPje-hv78gTsyzWXMiIKJ70mRM31sXk3CVyBwwS3_rE_p3y7NEPqK1A',
+  authclientid: '',
+  authsecret: '',
   authaudience: 'https://api.erikvancraddock.com'
 };
