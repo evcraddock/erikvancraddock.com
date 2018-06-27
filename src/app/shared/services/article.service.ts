@@ -4,13 +4,13 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from "rxjs/operators";
-import { AuthorizationService } from './authorization.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ArticleService {
 
     private serverUrl = environment.apiEndpoint;
-    constructor(private http: HttpClient, private authorizationService: AuthorizationService) {}
+    constructor(private http: HttpClient, private authorizationService: AuthService) {}
 
     getArticle(id: string): Observable<IArticle> {
         return this.http.get(this.serverUrl + '/articles/' + id).pipe(map((response: Response) => {
@@ -22,17 +22,17 @@ export class ArticleService {
     getArticles(params?: HttpParams): Observable<IArticle[]> {
         const url = this.serverUrl + '/articles';
         
-        let token = this.authorizationService.getToken();
+        // let token = this.authorizationService.getToken();
         
 
 
-        const headers = new HttpHeaders();
-        headers.set('Authorization', 'bearer ' + token)
+        // const headers = new HttpHeaders();
+        // headers.set('Authorization', 'bearer ' + token)
         
         const request = this.http.get(url, { 
             responseType: 'json',
-            params: params,
-            headers: headers
+            params: params
+            // headers: headers
         });
 
         return request.pipe(
