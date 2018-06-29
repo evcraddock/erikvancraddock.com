@@ -14,11 +14,13 @@ export class ArticlesSummaryItemComponent {
     public image: SafeStyle;
     @Input() article: IArticle;
 
-    constructor(private imageService: ImageService) { }
+    constructor(
+        // private imageService: ImageService
+    ) { }
 
-    getBanner() {
-        return this.imageService.getBannerImage(this.article);
-    }
+    // getBanner() {
+    //     return this.imageService.getBannerImage(this.article);
+    // }
 
     getContentSummarybyLenght(): string {
         let sumlen = 500;

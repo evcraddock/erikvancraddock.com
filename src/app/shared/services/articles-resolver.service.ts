@@ -13,14 +13,13 @@ export class ArticlesResolver implements Resolve<any> {
     constructor(private articleService: ArticleService) {}
 
     resolve(route: ActivatedRouteSnapshot) {
-        const params = new HttpParams();
         if (route.params['category']) {
-            params.set('categories', route.params['category']);
+            const cat : string = route.params['category'];
+
+            const params = new HttpParams().set('categories', cat);
+            return this.articleService.getArticles(params);
         }
 
-        return this.articleService.getArticles(params);
-        // .catch(error => {
-        //     return Observable.of(error);
-        // });
+        return this.articleService.getArticles();
     }
 }

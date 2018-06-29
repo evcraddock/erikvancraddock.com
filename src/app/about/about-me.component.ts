@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageService } from '../shared/services/image.service';
+// import { ImageService } from '../shared/services/image.service';
 
 @Component({
   selector: 'app-about-me',
@@ -11,7 +11,9 @@ export class AboutMeComponent implements OnInit {
   title = 'app';
   latestImage = "";
 
-  constructor(private imageService: ImageService) { }
+  constructor(
+    // private imageService: ImageService
+  ) { }
 
   ngOnInit(): void {
     // this.latestImage = this.imageService.getLatestImage('recent');

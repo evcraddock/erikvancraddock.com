@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from '@angular/common/http';
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 import { Auth } from "../models/";
 import { JwtHelperService } from "@auth0/angular-jwt";
 
@@ -14,34 +12,23 @@ export class AuthService {
     private authaudience = environment.authaudience;
     private granttype = "client_credentials";
 
-    constructor(
-        private http: HttpClient
-    
-    ) {}
+    constructor(private http: HttpClient) {}
 
     public getToken(): string {
-        let token = localStorage.getItem("articleToken");
+        return localStorage.getItem("articleToken");
+    }
 
+    public loadToken() {
         const jwtHelper = new JwtHelperService();
-        if (token == null || token == '' || jwtHelper.isTokenExpired(token)) {
+        let token = localStorage.getItem("articleToken");
+        
+        if (token == null || token == '' || jwtHelper.isTokenExpired(token)) {    
             localStorage.removeItem('articleToken');
-            this.loadToken();
-            token = localStorage.getItem('articleToken');
-        }
-
-        return token;
-    }
-
-    private loadToken() {
-        const body = this.getAuthRequest();
-        return this.http.post(this.authserver, body)
-        .subscribe((response: any) => {
-            this.storeToken(response.access_token);
-        });
-    }
-
-    private storeToken(content: any) {
-        localStorage.setItem("articleToken", JSON.stringify(content));
+            const body = this.getAuthRequest();
+            this.http.post(this.authserver, body).subscribe((response: any) => {
+                localStorage.setItem('articleToken', response.access_token);
+            });
+        }   
     }
 
     private getAuthRequest(): Auth {

@@ -17,15 +17,18 @@ export class ArticlesListItemComponent implements OnInit {
     @Input() article: IArticle;
     private bannerUrl;
 
-    constructor(private imageService: ImageService, private sanitization: DomSanitizer) { }
+    constructor(
+        // private imageService: ImageService
+        private sanitization: DomSanitizer
+    ) { }
 
-    getBanner() {
-        return this.imageService.getBannerImage(this.article);
-    }
+    // getBanner() {
+    //     return this.imageService.getBannerImage(this.article);
+    // }
 
     ngOnInit(): void {
-        const imgurl = this.getBanner();
-        this.bannerUrl = this.sanitization.bypassSecurityTrustStyle(`url(${imgurl})`);
+        // const imgurl = this.getBanner();
+        // this.bannerUrl = this.sanitization.bypassSecurityTrustStyle(`url(${imgurl})`);
 
         // this.bannerUrl = this.sanitization.bypassSecurityTrustStyle('url('+ imgurl + ')');
     }

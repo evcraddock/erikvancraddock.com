@@ -9,24 +9,10 @@ import { HttpParams } from '@angular/common/http';
 export class ArticleResolver implements Resolve<any> {
     constructor(private articleService: ArticleService) {}
 
-    resolve(route: ActivatedRouteSnapshot) {
-        if (route.params['id']) {
-            const articleId = route.params['id'];
-            return this.articleService.getArticle(articleId);
-            // .catch(error => {
-            //     return Observable.of(error);
-            // });
-        }
-
-        // const params = new URLSearchParams();
-        const params = new HttpParams();
+    resolve(route: ActivatedRouteSnapshot) {  
         if (route.params['permalink']) {
-            params.set('url', route.params['permalink']);
+            const params = new HttpParams().set('url', route.params['permalink']);
+            return this.articleService.getArticles(params);
         }
-
-        return this.articleService.getArticles(params);
-        // .catch(error => {
-        //     return Observable.of(error);
-        // });
     }
 }
