@@ -16,7 +16,10 @@ export class ArticleDetailComponent implements OnInit {
   protected articleHtml = '';
 //   links: ILink[] = [];
 
-  constructor(private route: ActivatedRoute, private imageService: ImageService) { }
+  constructor(
+    private route: ActivatedRoute
+    // private imageService: ImageService
+  ) { }
 
   ngOnInit() {
     this.loadData();
@@ -35,21 +38,21 @@ export class ArticleDetailComponent implements OnInit {
 
   transformContent(article: IArticle) {
     const renderer = new marked.Renderer();
-    const url = this.imageService.serverUrl + '/images/' + article.id;
-    renderer.paragraph = function (text: string) {
-        const regimg = /{imageservice}/gi;
-        const imgtext = text.replace(regimg, url);
+    // const url = this.imageService.serverUrl + '/images/' + article.id;
+    // renderer.paragraph = function (text: string) {
+    //     const regimg = /{imageservice}/gi;
+    //     const imgtext = text.replace(regimg, url);
 
-        const regid = /{articleid}/gi;
-        const newtext = imgtext.replace(regid, article.id);
+    //     const regid = /{articleid}/gi;
+    //     const newtext = imgtext.replace(regid, article.id);
 
-        return '<p class="article-entry">' + newtext + '</p>'
-    }
+    //     return '<p class="article-entry">' + newtext + '</p>'
+    // }
 
     this.articleHtml = marked(article.content, { renderer: renderer }) ;
   }
 
-  getBannerImage() {
-    return this.imageService.getBannerImage(this.article);
-  }
+  // getBannerImage() {
+  //   return this.imageService.getBannerImage(this.article);
+  // }
 }

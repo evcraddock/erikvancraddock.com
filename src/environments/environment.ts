@@ -6,5 +6,9 @@
 export const environment = {
   production: false,
   githubUrl: 'https://api.github.com',
-  apiEndpoint: 'http://localhost:8080/api'
+  apiEndpoint: 'http://localhost:8080/api',
+  authendpoint: 'https://erikvan.auth0.com/oauth/token',
+  authclientid: '',
+  authsecret: '',
+  authaudience: 'https://api.erikvancraddock.com'
 };

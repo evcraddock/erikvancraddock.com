@@ -1,45 +1,24 @@
 import { Injectable } from '@angular/core';
 import { IArticle } from '../models/article';
 import { environment } from '../../../environments/environment';
-import { Http, Response, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from "rxjs/operators";
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ArticleService {
 
     private serverUrl = environment.apiEndpoint;
-    constructor(private http: Http) {}
+    constructor(private http: HttpClient, private authorizationService: AuthService) {}
 
-    getArticle(id: string): Observable<IArticle> {
-        return this.http.get(this.serverUrl + '/articles/' + id).pipe(map((response: Response) => {
-            return this.convertToArticle(response.json());
-        }),
-        catchError(this.handleArticleError));
-    }
-
-    getArticles(params?: URLSearchParams): Observable<IArticle[]> {
+    getArticles(params?: HttpParams): Observable<IArticle[]> {
+        this.authorizationService.loadToken();
         const url = this.serverUrl + '/articles';
-        const request = this.http.get(url, { params });
 
-        return request.pipe(map((response: Response) => {
-            const articles: IArticle[] = [];
-            response.json().forEach(element => {
-                articles.push(this.convertToArticle(element));
-            });
-
-            return articles;
-        }),
-        catchError((error: Response) => {
-            let msg = '';
-            if (error.status === 404) {
-                msg = 'Not able to connect to the article server, try again later';
-            } else {
-                msg = error.statusText + ' - An unexpected error happened. Check the logs';
-            }
-            
-            return Promise.reject(error);
-        }));
+        return this.http.get<IArticle[]>(url, {
+            params: params
+        });
     }
 
     private handleArticleError(error: Response) {

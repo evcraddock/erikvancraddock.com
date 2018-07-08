@@ -1,16 +1,8 @@
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/first';
-// import 'rxjs/add/operator/do';
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/observable/throw';
-
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
-
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -36,9 +28,24 @@ import {
   ArticlesSummaryItemComponent,
   ArticleDetailComponent
 } from './articles/';
-import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
+import { ArticleService, ArticleResolver, ArticlesResolver } from './shared/services/';
+import { AuthService } from './shared/services/auth.service';
 import { MarkdownToHtmlPipe, SafePipe } from './shared/pipes';
 import { appRoutes } from '../routes';
+
+export const jwtOptionsFactory = (authService) => ({
+  tokenGetter: authService.getToken, //{ 
+    
+    // const token = authService.getToken();
+    // if (token == null) {
+    //   return authService.loadToken();
+    // }
+
+    // return token;
+  //},
+  whitelistedDomains: ['localhost:8080']
+  ,blacklistDomains: ['localhost:4200', 'https://erikvan.auth0.com/oauth/token']
+})
 
 @NgModule({
   declarations: [
@@ -55,8 +62,14 @@ import { appRoutes } from '../routes';
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
-    HttpModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        deps: [AuthService],
+        useFactory: jwtOptionsFactory
+      }
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -73,8 +86,8 @@ import { appRoutes } from '../routes';
     ArticleService,
     ArticleResolver,
     ArticlesResolver,
-    ImageService,
-    MatIconRegistry
+    MatIconRegistry,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
