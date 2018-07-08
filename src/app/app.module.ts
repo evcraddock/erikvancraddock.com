@@ -28,21 +28,13 @@ import {
   ArticlesSummaryItemComponent,
   ArticleDetailComponent
 } from './articles/';
-import { ArticleService, ArticleResolver, ArticlesResolver } from './shared/services/';
+import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
 import { AuthService } from './shared/services/auth.service';
 import { MarkdownToHtmlPipe, SafePipe } from './shared/pipes';
 import { appRoutes } from '../routes';
 
 export const jwtOptionsFactory = (authService) => ({
-  tokenGetter: authService.getToken, //{ 
-    
-    // const token = authService.getToken();
-    // if (token == null) {
-    //   return authService.loadToken();
-    // }
-
-    // return token;
-  //},
+  tokenGetter: authService.getToken,
   whitelistedDomains: ['localhost:8080']
   ,blacklistDomains: ['localhost:4200', 'https://erikvan.auth0.com/oauth/token']
 })
@@ -87,7 +79,8 @@ export const jwtOptionsFactory = (authService) => ({
     ArticleResolver,
     ArticlesResolver,
     MatIconRegistry,
-    AuthService
+    AuthService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })

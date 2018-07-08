@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+// import { Http } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { IArticle } from '../models/article';
 
 @Injectable()
 export class ImageService {
     public serverUrl = environment.apiEndpoint;
-    constructor(private http: Http) {}
+    constructor(
+        // private http: Http
+    ) {}
 
     getBannerImage(article: IArticle) {
-        const url = this.serverUrl + '/images/';
-        return url + '/' + article.id + '/' + article.banner;
+        return this.serverUrl + '/articles/' + article.id + '/images/' + article.banner;
     }
 
     getImage(articleId: string, imageName: string) {
-        const url = this.serverUrl + '/images/';
-        return url + '/' + articleId + '/' + imageName;
+        return this.serverUrl + '/articles/' + articleId + '/images/' + imageName;
     }
 
     getLatestImage(collectionName: string) {
