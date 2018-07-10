@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { Http } from '@angular/http';
 import { environment } from '../../../environments/environment';
-import { IArticle } from '../models/article';
+import { IArticle } from '../../shared/models';
 
 @Injectable()
 export class ImageService {
     public serverUrl = environment.apiEndpoint;
-    constructor(
-        // private http: Http
-    ) {}
+    constructor() {}
 
     getBannerImage(article: IArticle) {
         return this.serverUrl + '/articles/' + article.id + '/images/' + article.banner;

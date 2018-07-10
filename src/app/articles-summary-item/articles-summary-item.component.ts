@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { IArticle } from '../shared/models';
 import { ArticleService } from '../shared/services';
 import { SafeStyle } from '@angular/platform-browser';
-import { ImageService } from '../shared/services/image.service';
+import { ImageService } from '../core/services/image.service';
 
 @Component({
     selector: 'articles-summaryitem',

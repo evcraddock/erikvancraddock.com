@@ -6,27 +6,15 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatGridListModule,
-  MatChipsModule,
-  MatIconRegistry,
-  MatPaginatorModule
-} from '@angular/material';
-
 import { CoreModule } from './core/core.module';
 
-import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from './material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 
 import { AppComponent } from './core/containers/app.container';
-import { AboutMeComponent } from './about/about-me.component';
 
 import { HomeComponent } from './home/home.component';
 import {
@@ -36,7 +24,7 @@ import {
   ArticleDetailComponent
 } from './articles';
 
-import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services';
+import { ArticleService, ArticleResolver, ArticlesResolver } from './shared/services';
 
 import { AuthService } from './shared/services/auth.service';
 
@@ -52,7 +40,6 @@ export const jwtOptionsFactory = (authService) => ({
 @NgModule({
   declarations: [
     HomeComponent,
-    AboutMeComponent,
     ArticlesComponent,
     ArticlesListItemComponent,
     ArticlesSummaryItemComponent,
@@ -76,23 +63,14 @@ export const jwtOptionsFactory = (authService) => ({
     }),
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatGridListModule,
-    MatChipsModule,
-    MatPaginatorModule,
+    MaterialModule,
     FlexLayoutModule
   ],
   providers: [
     ArticleService,
     ArticleResolver,
     ArticlesResolver,
-    MatIconRegistry,
-    AuthService,
-    ImageService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
