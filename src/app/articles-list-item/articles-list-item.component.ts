@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { IArticle } from '../shared/models/index';
-import { ArticleService } from '../shared/services/';
+import { IArticle } from '../shared/models';
+import { ArticleService } from '../shared/services';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from '../shared/services/image.service';
 

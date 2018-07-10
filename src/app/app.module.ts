@@ -1,5 +1,6 @@
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,21 +16,30 @@ import {
   MatIconRegistry,
   MatPaginatorModule
 } from '@angular/material';
+
+import { CoreModule } from './core/core.module';
+
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
-import { AppComponent } from './app.component';
+
+import { AppComponent } from './core/containers/app.container';
 import { AboutMeComponent } from './about/about-me.component';
-import { NavComponent } from './nav/nav.component';
+
 import { HomeComponent } from './home/home.component';
 import {
   ArticlesComponent,
   ArticlesListItemComponent,
   ArticlesSummaryItemComponent,
   ArticleDetailComponent
-} from './articles/';
-import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services/';
+} from './articles';
+
+import { ArticleService, ArticleResolver, ArticlesResolver, ImageService } from './shared/services';
+
 import { AuthService } from './shared/services/auth.service';
+
 import { MarkdownToHtmlPipe, SafePipe } from './shared/pipes';
 import { appRoutes } from '../routes';
 
@@ -41,8 +51,8 @@ export const jwtOptionsFactory = (authService) => ({
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavComponent,
+    // AppComponent,
+    // NavComponent,
     HomeComponent,
     AboutMeComponent,
     ArticlesComponent,
@@ -53,7 +63,11 @@ export const jwtOptionsFactory = (authService) => ({
     SafePipe
   ],
   imports: [
+    CommonModule,
+    CoreModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    // StoreModule.forRoot(reducers, { metaReducers }),
+    // EffectsModule.forRoot([]),
     HttpClientModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {

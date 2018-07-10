@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { IArticle } from '../models/index';
+import { IArticle } from '../models';
 import { ArticleService } from './article.service';
 import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
