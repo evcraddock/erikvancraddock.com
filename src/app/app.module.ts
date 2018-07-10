@@ -51,8 +51,6 @@ export const jwtOptionsFactory = (authService) => ({
 
 @NgModule({
   declarations: [
-    // AppComponent,
-    // NavComponent,
     HomeComponent,
     AboutMeComponent,
     ArticlesComponent,
