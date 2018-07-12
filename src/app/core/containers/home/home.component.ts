@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IArticle } from '../shared/models';
+import { IArticle } from '../../../shared/models';
 import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  // styleUrls: ['./home.component.scss'
 })
 export class HomeComponent implements OnInit {
   public articles: IArticle[] = [];

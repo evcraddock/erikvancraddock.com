@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { IArticle } from '../shared/models';
-import { ArticleService } from '../shared/services';
+import { IArticle } from '../../../shared/models';
 import { SafeStyle, DomSanitizer } from '@angular/platform-browser';
-import { ImageService } from '../core/services/image.service';
+import { ImageService } from '../../../core/services/image.service';
 
 @Component({
     selector: 'articles-listitem',

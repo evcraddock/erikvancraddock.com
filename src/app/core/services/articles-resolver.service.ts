@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { URLSearchParams, Response } from '@angular/http';
-
-
-import { IArticle } from '../models';
 import { ArticleService } from './article.service';
-import { Observable } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable()

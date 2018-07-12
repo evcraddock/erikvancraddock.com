@@ -2,28 +2,47 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './containers/app.container';
-import { AboutMeComponent } from './containers/about/about-me.component';
-import { NotFoundPageComponent } from './containers/not-found-page';
-
-import { NavItemComponent } from './components/nav-item';
-
-import { ToolbarComponent } from './components/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material';
+import { SharedModule } from '../shared/shared.module';
+
+import { 
+  AppComponent,
+  HomeComponent,
+  NotFoundPageComponent,
+} from './containers/';
+
+import { 
+  NavItemComponent,
+  ToolbarComponent,
+  ArticlesSummaryItemComponent
+} from './components';
+
+import { 
+  ArticleResolver, 
+  ArticleService, 
+  ArticlesResolver 
+} from './services';
 
 import { ImageService } from './services/image.service';
 
-
 export const COMPONENTS = [
   AppComponent,
-  AboutMeComponent,
+  HomeComponent,
+  ArticlesSummaryItemComponent,
   NotFoundPageComponent,
   NavItemComponent,
   ToolbarComponent,
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, MaterialModule],
+  imports: [
+    CommonModule, 
+    RouterModule, 
+    MaterialModule, 
+    FlexLayoutModule,
+    SharedModule
+  ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
@@ -31,7 +50,12 @@ export class CoreModule {
   static forRoot() {
     return {
       ngModule: CoreModule,
-      providers: [ ImageService ]
+      providers: [ 
+            ImageService,
+            ArticleResolver, 
+            ArticleService, 
+            ArticlesResolver
+        ]
     };
   }
 }

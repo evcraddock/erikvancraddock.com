@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { IArticle } from '../shared/models';
-import { ImageService } from '../core/services/image.service';
+import { IArticle } from '../../../shared/models';
+import { ImageService } from '../../../core/services/image.service';
 
 import * as marked from 'marked';
 

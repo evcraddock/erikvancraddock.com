@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IArticle } from '../models/article';
+import { IArticle } from '../../shared/models/article';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError } from "rxjs/operators";
 import { AuthService } from './auth.service';
 
 @Injectable()

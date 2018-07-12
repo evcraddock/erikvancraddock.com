@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './app/home/home.component';
-import { ArticlesComponent, ArticleDetailComponent } from './app/articles';
-import { ArticleResolver, ArticlesResolver } from './app/shared/services';
+import { HomeComponent } from './app/core/containers/home/home.component';
+import { ArticlesComponent, ArticleDetailComponent } from './app/articles/containers/';
+import { ArticleResolver, ArticlesResolver } from './app/core/services';
 export const appRoutes: Routes = [
 
     { path: '', component: HomeComponent, resolve: { articles: ArticlesResolver } },

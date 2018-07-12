@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { URLSearchParams } from '@angular/http';
-import { ArticleService } from '../shared/services/article.service';
-import { IArticle } from '../shared/models/article';
+import { IArticle } from '../../../shared/models/article';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-articles',
-  templateUrl: './articles.component.html'
+  templateUrl: './articles.component.html',
+  styleUrls: [ './articles.component.scss' ]
 })
 export class ArticlesComponent implements OnInit {
   public title = 'Articles';

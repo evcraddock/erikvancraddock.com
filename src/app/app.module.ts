@@ -1,4 +1,4 @@
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -7,28 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-
+import { ArticlesModule } from './articles/articles.module';
 import { MaterialModule } from './material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 
 import { AppComponent } from './core/containers/app.container';
-
-import { HomeComponent } from './home/home.component';
-import {
-  ArticlesComponent,
-  ArticlesListItemComponent,
-  ArticlesSummaryItemComponent,
-  ArticleDetailComponent
-} from './articles';
-
-import { ArticleService, ArticleResolver, ArticlesResolver } from './shared/services';
-
-import { AuthService } from './shared/services/auth.service';
-
-import { MarkdownToHtmlPipe, SafePipe } from './shared/pipes';
+import { AuthService } from './core/services/auth.service';
 import { appRoutes } from '../routes';
 
 export const jwtOptionsFactory = (authService) => ({
@@ -38,15 +24,6 @@ export const jwtOptionsFactory = (authService) => ({
 })
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    ArticlesComponent,
-    ArticlesListItemComponent,
-    ArticlesSummaryItemComponent,
-    ArticleDetailComponent,
-    MarkdownToHtmlPipe,
-    SafePipe
-  ],
   imports: [
     CommonModule,
     CoreModule.forRoot(),
@@ -64,12 +41,9 @@ export const jwtOptionsFactory = (authService) => ({
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    ArticlesModule,
   ],
   providers: [
-    ArticleService,
-    ArticleResolver,
-    ArticlesResolver,
     AuthService
   ],
   bootstrap: [AppComponent]
