@@ -1,21 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-// import { ImageService } from '../../services/image.service';
+import { Component, Input } from '@angular/core';
+import { Profile } from '../../models/profile';
 
 @Component({
   selector: 'app-about-me',
   templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.scss']
-})
-export class AboutMeComponent implements OnInit {
-  
-  title = 'app';
-  latestImage = "";
-
-  constructor(
-    // private imageService: ImageService
-  ) { }
-
-  ngOnInit(): void {
-    // this.latestImage = this.imageService.getLatestImage('recent');
+  styles: [`
+  .avatar-image {
+    background-image: url('http://erikvancraddock.com/css/images/avatar.jpg');
+    background-size: cover;
   }
+
+  .fa, a {
+      font-size: 24px;
+      padding: 5px;
+      color: gray;
+  }
+
+  .aboutme {
+      width: 250px;
+      padding: 5px;
+  }
+  `],
+})
+export class AboutMeComponent {
+  @Input() profile: Profile;
 }

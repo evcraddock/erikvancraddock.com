@@ -10,7 +10,7 @@ import {
   AppComponent,
   HomeComponent,
   NotFoundPageComponent,
-} from './containers/';
+} from './containers';
 
 import { 
   NavItemComponent,

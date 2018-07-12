@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { IArticle } from '../../../shared/models/article';
+import { IArticle } from '../../../shared/models';
+import { Profile } from '../../../shared/models/profile';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { PageEvent } from '@angular/material';
 
@@ -12,6 +13,7 @@ import { PageEvent } from '@angular/material';
 export class ArticlesComponent implements OnInit {
   public title = 'Articles';
   public articles: IArticle[] = [];
+  public profile: Profile;
   public pagedArticles: IArticle[] = [];
   public pagesize = 10;
   public pageIndex = 0;
@@ -31,6 +33,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.profile = Profile.getDefaultProfile();
     this.route.params.subscribe(params => {
       this.articles = [];
       this.title = params['category'];

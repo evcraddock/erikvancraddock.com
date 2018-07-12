@@ -11,8 +11,6 @@ import { ImageService } from '../../../core/services/image.service';
 })
 export class ArticlesListItemComponent implements OnInit {
     
-    
-    public image: SafeStyle;
     @Input() article: IArticle;
     private bannerUrl;
 
@@ -26,9 +24,6 @@ export class ArticlesListItemComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        const imgurl = this.getBanner();
-        this.bannerUrl = this.sanitization.bypassSecurityTrustStyle(`url(${imgurl})`);
-
-        this.bannerUrl = this.sanitization.bypassSecurityTrustStyle('url('+ imgurl + ')');
+        this.bannerUrl = this.sanitization.bypassSecurityTrustStyle(`url(${this.getBanner()})`);
     }
 }

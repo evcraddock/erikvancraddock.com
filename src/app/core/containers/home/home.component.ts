@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IArticle } from '../../../shared/models';
+import { Profile } from '../../../shared/models/profile';
 import { PageEvent } from '@angular/material';
 
 @Component({
@@ -10,6 +11,7 @@ import { PageEvent } from '@angular/material';
 })
 export class HomeComponent implements OnInit {
   public articles: IArticle[] = [];
+  public profile: Profile = null;
   public pagedArticles: IArticle[] = [];
   public pagesize = 5;
   public pageIndex = 0;
@@ -18,8 +20,10 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.profile = Profile.getDefaultProfile();
     this.loadArticles();
     this.changePage();
+    
   }
 
   hasArticles() {

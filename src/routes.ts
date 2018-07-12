@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './app/core/containers/home/home.component';
-import { ArticlesComponent, ArticleDetailComponent } from './app/articles/containers/';
+import { ArticlesComponent, ArticleDetailComponent } from './app/articles/containers';
 import { ArticleResolver, ArticlesResolver } from './app/core/services';
 export const appRoutes: Routes = [
 

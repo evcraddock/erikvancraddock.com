@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IArticle } from '../../../shared/models';
+import { Profile } from '../../../shared/models/profile';
 import { ImageService } from '../../../core/services/image.service';
 
 import * as marked from 'marked';
@@ -14,7 +15,7 @@ import * as marked from 'marked';
 export class ArticleDetailComponent implements OnInit {
   protected article: IArticle = <IArticle>{};
   protected articleHtml = '';
-//   links: ILink[] = [];
+  protected profile: Profile = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +23,7 @@ export class ArticleDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.profile = Profile.getDefaultProfile();
     this.loadData();
   }
 
