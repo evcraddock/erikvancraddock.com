@@ -6,12 +6,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material';
 import { SharedModule } from '../shared/shared.module';
 
-import { ArticlesComponent, ArticleDetailComponent, ArticlesListItemComponent } from './containers';
+import { ArticlesComponent, ArticleDetailComponent } from './containers';
 
 export const COMPONENTS = [
     ArticlesComponent,
     ArticleDetailComponent,
-    ArticlesListItemComponent,
   ];
 
 @NgModule({

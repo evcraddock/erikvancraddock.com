@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { IArticle } from '../../../shared/models';
+import { Article } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
 import { ImageService } from '../../../core/services/image.service';
 
@@ -13,7 +13,7 @@ import * as marked from 'marked';
   styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit {
-  protected article: IArticle = <IArticle>{};
+  protected article: Article = <Article>{};
   protected articleHtml = '';
   protected profile: Profile = null;
 
@@ -31,14 +31,15 @@ export class ArticleDetailComponent implements OnInit {
     if (this.route.data) {
       this.route.data.forEach(data => {
         if (data['article'] instanceof Array && data['article'].length > 0) {
-          this.article = data['article'][0];
+          this.article = Article.mapFrom(data['article'][0]);
+          this.article.banner = this.imageService.getBannerImage(this.article);
           this.transformContent(this.article);
         }
       });
     }
   }
 
-  transformContent(article: IArticle) {
+  transformContent(article: Article) {
     const renderer = new marked.Renderer();
     const url = this.imageService.serverUrl + '/images/' + article.id;
     renderer.paragraph = function (text: string) {
@@ -52,9 +53,5 @@ export class ArticleDetailComponent implements OnInit {
     }
 
     this.articleHtml = marked(article.content, { renderer: renderer }) ;
-  }
-
-  getBannerImage() {
-    return this.imageService.getBannerImage(this.article);
   }
 }

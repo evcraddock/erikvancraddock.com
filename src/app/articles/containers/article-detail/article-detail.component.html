@@ -3,9 +3,9 @@
         <app-about-me [profile]="profile"></app-about-me>
     </div>
 
-    <div fxFlex="none" style="width: 800px">
+    <div fxFlex="none" style="width: 1100px">
         <mat-card class="article-card">
-            <img mat-card-image *ngIf="article.banner" [src]="getBannerImage()" alt="">
+            <img mat-card-image *ngIf="article.banner" [src]="article.banner" alt="">
             <span class="article-header">
                 <h1 class="article-title">{{ article.title }}</h1>
             </span>

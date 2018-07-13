@@ -15,7 +15,6 @@ import {
 import { 
   NavItemComponent,
   ToolbarComponent,
-  ArticlesSummaryItemComponent
 } from './components';
 
 import { 
@@ -29,7 +28,6 @@ import { ImageService } from './services/image.service';
 export const COMPONENTS = [
   AppComponent,
   HomeComponent,
-  ArticlesSummaryItemComponent,
   NotFoundPageComponent,
   NavItemComponent,
   ToolbarComponent,
