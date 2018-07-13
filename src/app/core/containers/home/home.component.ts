@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IArticle } from '../../../shared/models';
+import { Article } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
 import { PageEvent } from '@angular/material';
+import { ImageService } from '../../services/image.service';
 
 @Component({
   selector: 'app-home',
@@ -10,20 +11,22 @@ import { PageEvent } from '@angular/material';
   // styleUrls: ['./home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  public articles: IArticle[] = [];
+  public articles: Article[] = [];
   public profile: Profile = null;
-  public pagedArticles: IArticle[] = [];
+  public pagedArticles: Article[] = [];
   public pagesize = 5;
   public pageIndex = 0;
   public pageEvent: PageEvent;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private imageService: ImageService
+  ) {}
 
   ngOnInit(): void {
     this.profile = Profile.getDefaultProfile();
     this.loadArticles();
     this.changePage();
-    
   }
 
   hasArticles() {
@@ -34,7 +37,12 @@ export class HomeComponent implements OnInit {
     if (this.route.data) {
       this.route.data.forEach(data => {
         if (data['articles'] instanceof Array && data['articles'].length > 0) {
-          this.articles = data['articles'];
+          for (let item of data['articles']) {
+            const article = Article.mapFrom(item);
+            article.banner = this.imageService.getBannerImage(article);
+
+            this.articles.push(article);
+          }
         }
       });
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IArticle } from '../../shared/models/article';
+import { IArticle, Article } from '../../shared/models/article';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -32,20 +32,20 @@ export class ArticleService {
     }
 
     private convertToArticle(articleObj: any): IArticle {
-        const article: IArticle = {
-            id: articleObj.id,
-            title: articleObj.title,
-            url: articleObj.url,
-            content: articleObj.content,
-            publishDate: articleObj.publishDate,
-            createdAt: articleObj.createdAt,
-            updatedAt: articleObj.updatedAt,
-            dataSource: articleObj.dataSource,
-            banner: articleObj.banner,
-            author: articleObj.author,
-            categories: articleObj.categories,
-            tags: articleObj.tags
-        };
+        const article = new Article();
+  
+        article.id=articleObj.id,
+        article.title=articleObj.title,
+        article.url=articleObj.url,
+        article.content=articleObj.content,
+        article.publishDate=articleObj.publishDate,
+        article.createdAt=articleObj.createdAt,
+        article.updatedAt=articleObj.updatedAt,
+        article.dataSource=articleObj.dataSource,
+        article.banner=articleObj.banner,
+        article.author=articleObj.author,
+        article.categories=articleObj.categories,
+        article.tags=articleObj.tags
 
         return article;
     }

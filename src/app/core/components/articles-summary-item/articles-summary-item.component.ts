@@ -1,8 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { IArticle } from '../../../shared/models';
-import { SafeStyle } from '@angular/platform-browser';
-import { ImageService } from '../../services/image.service';
+import { Article } from '../../../shared/models';
 
 @Component({
     selector: 'articles-summaryitem',
@@ -10,29 +8,5 @@ import { ImageService } from '../../services/image.service';
     styleUrls: ['./article-summary-item.component.scss']
 })
 export class ArticlesSummaryItemComponent {
-    public image: SafeStyle;
-    @Input() article: IArticle;
-
-    constructor(
-        private imageService: ImageService
-    ) { }
-
-    getBanner() {
-        return this.imageService.getBannerImage(this.article);
-    }
-
-    getContentSummarybyLenght(): string {
-        let sumlen = 500;
-        if (this.article.content.length < sumlen) {
-            sumlen = this.article.content.length;
-        }
-
-        return this.article.content.slice(0, sumlen);
-    }
-
-    getContentSummary(): string {
-        const summarray = this.article.content.split('\n');
-
-        return summarray[0];
-    }
+    @Input() article: Article;
 }

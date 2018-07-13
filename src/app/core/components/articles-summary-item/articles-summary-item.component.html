@@ -1,6 +1,6 @@
 <div *ngIf="article">  
     <mat-card class="article-card">
-        <a [routerLink]= "['/articles', article.url]"><img mat-card-image *ngIf="article.banner" [src]="getBanner()" alt=""></a>
+        <a [routerLink]= "['/articles', article.url]"><img mat-card-image *ngIf="article.banner" [src]="article.banner" alt=""></a>
         <span class="article-header">
             <a [routerLink]= "['/articles', article.url]">
                 <h1 class="article-title">{{ article.title }}</h1>
@@ -12,7 +12,7 @@
             <span class="icon-content" *ngFor="let cat of article.categories">
                 <mat-icon>label</mat-icon> <a class="capitalize" [routerLink]="['/', cat]">{{cat}}</a>
             </span>
-            <p [innerHtml]="getContentSummary() | MarkdownToHtml"></p>
+            <p [innerHtml]="article.GetContentSummary() | MarkdownToHtml"></p>
         </mat-card-content>
         <mat-card-actions>
             <mat-chip-list>
