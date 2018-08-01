@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Article } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { PageEvent } from '@angular/material';
 import { ImageService } from '../../../core/services/image.service';
+import { Store, select } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
 import * as fromArticles from '../../reducers';
@@ -13,49 +12,33 @@ import { Observable } from '../../../../../node_modules/rxjs';
 import * as articlesActions from '../../actions/articles';
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: [ './articles.component.scss' ]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  // styleUrls: ['./home.component.scss'
 })
-export class ArticlesComponent implements OnInit {
-  public title = 'Articles';
+export class ArtComponent implements OnInit {
   public articles: Article[] = [];
-  public profile: Profile;
+  public profile: Profile = null;
   public pagedArticles: Article[] = [];
-  public pagesize = 10;
+  public pagesize = 5;
   public pageIndex = 0;
   public pageEvent: PageEvent;
   articles$: Observable<Article[]>;
 
+
   constructor(
     private store: Store<fromRoot.State>,
-    private route: ActivatedRoute, 
-    private router: Router,
+    private route: ActivatedRoute,
     private imageService: ImageService
   ) {
-      this.articles$ = store.pipe(select(fromArticles.getAllArticles));
-
-      this.router.routeReuseStrategy.shouldReuseRoute = function(){
-        return false;
-      };
-
-      this.router.events.subscribe((evt) => {
-          if (evt instanceof NavigationEnd) {
-            this.router.navigated = false;
-            window.scrollTo(0, 0);
-          }
-      });
+    this.articles$ = store.pipe(select(fromArticles.getAllArticles));
   }
 
   ngOnInit(): void {
     this.profile = Profile.getDefaultProfile();
     this.store.dispatch(new articlesActions.Load('work'));
-    this.route.params.subscribe(params => {
-      this.articles = [];
-      this.title = params['category'];
-      this.loadArticles();
-      this.changePage();
-    });
+    // this.loadArticles();
+    // this.changePage();
   }
 
   hasArticles() {
