@@ -5,11 +5,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material';
 import { SharedModule } from '../shared/shared.module';
-import { reducers } from '../reducers';
+import { reducers } from './reducers';
 
 import { ArticlesComponent, ArticleDetailComponent } from './containers';
-import { StoreModule } from '../../../node_modules/@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { ArtComponent } from './containers/home/home.component';
+import { EffectsModule } from '@ngrx/effects';
+import { ArticlesEffects } from './effects/articles';
 
 export const COMPONENTS = [
     ArticlesComponent,
@@ -25,10 +27,11 @@ export const COMPONENTS = [
         FlexLayoutModule,
         SharedModule,
         StoreModule.forFeature('articles', reducers),
+        EffectsModule.forFeature([ArticlesEffects])
     ],
     declarations: [
         COMPONENTS
     ],
-    exports: COMPONENTS,
+    exports: COMPONENTS
 })
 export class ArticlesModule {}

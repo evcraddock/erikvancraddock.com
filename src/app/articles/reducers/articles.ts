@@ -23,9 +23,9 @@ export function reducer(
 ): State {
     switch (action.type) {
         case ArticlesActionTypes.Load: {
-            return adapter.removeAll({
+            return {
                 ...state,
-            } as State);
+            };
         }
 
         case ArticlesActionTypes.LoadSuccess: {

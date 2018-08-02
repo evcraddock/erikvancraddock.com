@@ -9,7 +9,7 @@ export enum ArticlesActionTypes {
 
 export class Load implements Action {
     readonly type = ArticlesActionTypes.Load;
-    constructor(public payload: string) {}
+    constructor(public payload: string = null) {}
 }
 
 export class LoadSuccess implements Action {

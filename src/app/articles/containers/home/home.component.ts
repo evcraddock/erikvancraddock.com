@@ -8,7 +8,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as fromRoot from '../../reducers';
 import * as fromArticles from '../../reducers';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import * as articlesActions from '../../actions/articles';
 
 @Component({
@@ -17,28 +17,30 @@ import * as articlesActions from '../../actions/articles';
   // styleUrls: ['./home.component.scss'
 })
 export class ArtComponent implements OnInit {
-  public articles: Article[] = [];
-  public profile: Profile = null;
-  public pagedArticles: Article[] = [];
-  public pagesize = 5;
-  public pageIndex = 0;
-  public pageEvent: PageEvent;
   articles$: Observable<Article[]>;
-
+  
+  profile: Profile = null;
+  pagesize = 5;
+  pageIndex = 0;
+  pageEvent: PageEvent;
+  startIndex = 0;
+  endIndex = 0;
+  
+  public articles: Article[] = [];
 
   constructor(
     private store: Store<fromRoot.State>,
     private route: ActivatedRoute,
     private imageService: ImageService
   ) {
-    this.articles$ = store.pipe(select(fromArticles.getAllArticles));
+      this.articles$ = store.pipe(select(fromArticles.getAllArticles));
   }
 
   ngOnInit(): void {
     this.profile = Profile.getDefaultProfile();
-    this.store.dispatch(new articlesActions.Load('work'));
+    this.store.dispatch(new articlesActions.Load());
     // this.loadArticles();
-    // this.changePage();
+    this.changePage();
   }
 
   hasArticles() {
@@ -46,6 +48,12 @@ export class ArtComponent implements OnInit {
   }
 
   loadArticles() {
+    this.articles$.subscribe((articles: Article[]) => {
+
+    });
+  }
+
+  loadArticles1() {
     if (this.route.data) {
       this.route.data.forEach(data => {
         if (data['articles'] instanceof Array && data['articles'].length > 0) {
@@ -64,9 +72,10 @@ export class ArtComponent implements OnInit {
     if (event != null) {
       this.pageIndex = event.pageIndex;
     }
-    const startIndex = this.pageIndex * this.pagesize;
-    const endIndex = startIndex + this.pagesize;
 
-    this.pagedArticles = this.articles.slice(startIndex, endIndex);
+    this.startIndex = this.pageIndex * this.pagesize;
+    this.endIndex = this.startIndex + this.pagesize;
+
+    // this.pagedArticles = this.articles.slice(startIndex, endIndex);
   }
 }

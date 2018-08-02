@@ -1,6 +1,6 @@
 import * as fromRoot from '../../reducers';
 import * as fromArticles from './articles';
-import { ActionReducerMap, createFeatureSelector, createSelector } from '../../../../node_modules/@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface ArticlesState {
     articles: fromArticles.State;
@@ -15,6 +15,7 @@ export const reducers: ActionReducerMap<ArticlesState> = {
 }
 
 export const getArticlesState = createFeatureSelector<ArticlesState>('articles');
+
 export const getArticlesEntities = createSelector(
     getArticlesState,
     state => state.articles
@@ -26,6 +27,16 @@ export const getSelectedArticleId = createSelector(
 )
 
 export const {
-   selectIds: getArticleIds,
-   selectAll: getAllArticles, 
+    selectIds: getArticleIds,
+    selectEntities: getArticleEntities,
+    selectAll: getAllArticles,
+    selectTotal: getTotalArticles,
 } = fromArticles.adapter.getSelectors(getArticlesEntities);
+
+export const getSelectedArticle = createSelector(
+    getArticleEntities,
+    getSelectedArticleId,
+    (entities, selectedId) => {
+      return selectedId && entities[selectedId];
+    }
+  );
