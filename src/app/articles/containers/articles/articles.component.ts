@@ -9,7 +9,7 @@ import { ImageService } from '../../../core/services/image.service';
 
 import * as fromRoot from '../../reducers';
 import * as fromArticles from '../../reducers';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import * as articlesActions from '../../actions/articles';
 
 @Component({
@@ -33,7 +33,7 @@ export class ArticlesComponent implements OnInit {
     private router: Router,
     private imageService: ImageService
   ) {
-      this.articles$ = store.pipe(select(fromArticles.getAllArticles));
+      // this.articles$ = store.pipe(select(fromArticles.getAllArticles));
 
       this.router.routeReuseStrategy.shouldReuseRoute = function(){
         return false;
@@ -49,7 +49,7 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile = Profile.getDefaultProfile();
-    this.store.dispatch(new articlesActions.Load('work'));
+    // this.store.dispatch(new articlesActions.Load('work'));
     this.route.params.subscribe(params => {
       this.articles = [];
       this.title = params['category'];

@@ -7,16 +7,25 @@ import { MaterialModule } from '../material';
 import { SharedModule } from '../shared/shared.module';
 import { reducers } from './reducers';
 
-import { ArticlesComponent, ArticleDetailComponent } from './containers';
+import { 
+    ArticlesComponent,
+    ArticleDetailComponent,
+    ArticleSummaryListComponent
+} from './containers';
+
+import {
+    ArticlesSummaryItemComponent
+} from './components';
+
 import { StoreModule } from '@ngrx/store';
-import { ArtComponent } from './containers/home/home.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ArticlesEffects } from './effects/articles';
 
 export const COMPONENTS = [
     ArticlesComponent,
-    ArtComponent,
+    ArticleSummaryListComponent,
     ArticleDetailComponent,
+    ArticlesSummaryItemComponent,
   ];
 
 @NgModule({

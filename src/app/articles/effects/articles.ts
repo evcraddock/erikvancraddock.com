@@ -6,8 +6,10 @@ import { switchMap, catchError, map } from 'rxjs/operators';
 
 import { ArticlesActionTypes, Load, LoadSuccess, LoadFail } from '../actions/articles';
 import { ArticleService } from '../../core/services/article.service';
+import { ImageService } from '../../core/services/image.service';
 
 import { Article } from '../../shared/models';
+
 
 @Injectable()
 export class ArticlesEffects {
@@ -19,8 +21,16 @@ export class ArticlesEffects {
             return this.articleService.getArticles()
             .pipe(
                 map((res: Article[]) => { 
+                    const articles: Article[] = []
+                    for (let item of res) {
+                        const article = Article.mapFrom(item);
+                        article.banner = this.imageService.getBannerImage(article);
+            
+                        articles.push(article);
+                    }
+                                        
                     const payload = {
-                        articles: res
+                        articles: articles
                     }
 
                     return new LoadSuccess(payload);
@@ -31,6 +41,7 @@ export class ArticlesEffects {
 
     constructor(
         private actions$: Actions,
-        private articleService: ArticleService
+        private articleService: ArticleService,
+        private imageService: ImageService
     ) {}
 }

@@ -26,6 +26,11 @@ export const getSelectedArticleId = createSelector(
     fromArticles.getSelectedId
 )
 
+export const getArticlePage = createSelector(
+    getArticlesEntities,
+    fromArticles.getPage
+)
+
 export const {
     selectIds: getArticleIds,
     selectEntities: getArticleEntities,

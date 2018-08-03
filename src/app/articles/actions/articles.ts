@@ -5,6 +5,7 @@ export enum ArticlesActionTypes {
     Load = '[Articles] Load Article List',
     LoadSuccess = '[Articles] Load List Successesfully',
     LoadFail = '[Articles] Failed to Load List',
+    ChangePage = '[Articles] Change Page',
 }
 
 export class Load implements Action {
@@ -22,7 +23,13 @@ export class LoadFail implements Action {
     constructor(public payload: any) {}
 }
 
+export class ChangePage implements Action {
+    readonly type = ArticlesActionTypes.ChangePage;
+    constructor(public payload: number) {}
+}
+
 export type ArticlesActions = 
     Load
     | LoadSuccess
     | LoadFail
+    | ChangePage

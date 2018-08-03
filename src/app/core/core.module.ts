@@ -8,7 +8,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { 
   AppComponent,
-  HomeComponent,
   NotFoundPageComponent,
 } from './containers';
 
@@ -27,7 +26,6 @@ import { ImageService } from './services/image.service';
 
 export const COMPONENTS = [
   AppComponent,
-  HomeComponent,
   NotFoundPageComponent,
   NavItemComponent,
   ToolbarComponent,

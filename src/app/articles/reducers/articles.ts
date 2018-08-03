@@ -1,11 +1,12 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { Article } from '../../shared/models';
+import { Article, Page } from '../../shared/models';
 
 import { ArticlesActions, ArticlesActionTypes } from '../actions/articles';
 
 export interface State extends EntityState<Article> {
     selectedArticleId: string | null;
+    page: Page | null;
 }
 
 export const adapter: EntityAdapter<Article> = createEntityAdapter<Article>({
@@ -14,7 +15,13 @@ export const adapter: EntityAdapter<Article> = createEntityAdapter<Article>({
 });
 
 export const initialState: State = adapter.getInitialState({
-    selectedArticleId: null
+    selectedArticleId: null,
+    page: {
+        pageSize: 2,
+        pageIndex: 0,
+        startIndex: 0,
+        endIndex: 0
+    } as Page
 });
 
 export function reducer(
@@ -40,7 +47,23 @@ export function reducer(
                 ...state
             } as State);
         }
+
+        case ArticlesActionTypes.ChangePage: {
+            const index = action.payload;
+            const start = index * state.page.pageSize;
+
+            return {
+                ...state,
+                page: {
+                    pageIndex: index,
+                    pageSize: state.page.pageSize,
+                    startIndex: start,
+                    endIndex: start + state.page.pageSize
+                } as Page
+            }
+        }
     }
 }
 
 export const getSelectedId = (state: State) => state.selectedArticleId;
+export const getPage = (state: State) => state.page;
