@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 import { Article } from '../../../shared/models';
+import { EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'articles-summaryitem',
@@ -9,4 +10,9 @@ import { Article } from '../../../shared/models';
 })
 export class ArticlesSummaryItemComponent {
     @Input() article: Article;
+    @Output('select') select = new EventEmitter();
+
+    public selectArticle() {
+        this.select.emit(this.article.id);
+    }
 }

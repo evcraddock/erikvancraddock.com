@@ -3,7 +3,7 @@
         <div class="article-list-inner">
             <div class="article-list-thumbnail">
                 
-                <a [routerLink]= "['/articles', article.url]" class="thumbnail">
+                <a style="cursor: pointer" (click)="selectArticle()" class="thumbnail">
                     <span class="thumbnail-image" [style.background-image]="bannerUrl">
                     </span>
                 </a>
@@ -11,7 +11,7 @@
             </div>
             <header class="article-list-header">
                 <h1 itemprop="name">
-                <a class="article-list-title" [routerLink]= "['/articles', article.url]">{{ article.title }}</a>
+                <a style="cursor: pointer" class="article-list-title" (click)="selectArticle()">{{ article.title }}</a>
                 </h1>
                 <span class="icon-content"><mat-icon>event_note</mat-icon>  {{article.publishDate | date: 'longDate'}}</span>  
                 <span class="icon-content" *ngFor="let cat of article.categories">

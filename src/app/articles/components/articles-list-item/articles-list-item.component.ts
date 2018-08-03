@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { Article } from '../../models';
+import { Article } from '../../../shared/models';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -11,13 +11,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ArticlesListItemComponent implements OnInit {
     
     @Input() article: Article;
+    @Output('select') select = new EventEmitter();
     private bannerUrl;
 
-    constructor(
-        private sanitization: DomSanitizer
-    ) { }
+    constructor(private sanitization: DomSanitizer) { }
 
     ngOnInit(): void {
         this.bannerUrl = this.sanitization.bypassSecurityTrustStyle(`url(${this.article.banner})`);
+    }
+
+    public selectArticle() {
+        this.select.emit(this.article.id);
     }
 }

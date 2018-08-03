@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Article } from '../../../shared/models';
+import { Article, Page } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { PageEvent } from '@angular/material';
 import { ImageService } from '../../../core/services/image.service';
 
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../../reducers';
 import * as fromArticles from '../../reducers';
 import { Observable } from 'rxjs';
 import * as articlesActions from '../../actions/articles';
@@ -18,22 +18,20 @@ import * as articlesActions from '../../actions/articles';
   styleUrls: [ './articles.component.scss' ]
 })
 export class ArticlesComponent implements OnInit {
-  public title = 'Articles';
-  public articles: Article[] = [];
-  public profile: Profile;
-  public pagedArticles: Article[] = [];
-  public pagesize = 10;
-  public pageIndex = 0;
-  public pageEvent: PageEvent;
   articles$: Observable<Article[]>;
+  articlePage$: Observable<Page> = null;
+  category$: Observable<string> = null;
+  public profile: Profile;
+  public pageEvent: PageEvent;
+  
 
   constructor(
     private store: Store<fromRoot.State>,
-    private route: ActivatedRoute, 
     private router: Router,
-    private imageService: ImageService
   ) {
-      // this.articles$ = store.pipe(select(fromArticles.getAllArticles));
+      this.articles$ = store.pipe(select(fromArticles.getAllArticles));
+      this.articlePage$ = store.pipe(select(fromArticles.getArticlePage));
+      this.category$ = store.pipe(select(fromRoot.getRouteCategory));
 
       this.router.routeReuseStrategy.shouldReuseRoute = function(){
         return false;
@@ -49,41 +47,24 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile = Profile.getDefaultProfile();
-    // this.store.dispatch(new articlesActions.Load('work'));
-    this.route.params.subscribe(params => {
-      this.articles = [];
-      this.title = params['category'];
-      this.loadArticles();
-      this.changePage();
-    });
+    this.store.dispatch(new articlesActions.Load());
+    this.changePage();
   }
 
   hasArticles() {
-    return this.articles.length > 0;
-  }
-
-  loadArticles() {
-    if (this.route.data) {
-      this.route.data.forEach(data => {
-        if (data['articles'] instanceof Array && data['articles'].length > 0) {
-          for (let item of data['articles']) {
-            const article = Article.mapFrom(item);
-            article.banner = this.imageService.getBannerImage(article);
-
-            this.articles.push(article);
-          }
-        }
-      });
-    }
+    return this.articles$ != null;
   }
 
   changePage(event?: PageEvent) {
+    let pageindex = 0;
     if (event != null) {
-      this.pageIndex = event.pageIndex;
+      pageindex = event.pageIndex;
     }
-    const startIndex = this.pageIndex * this.pagesize;
-    const endIndex = startIndex + this.pagesize;
 
-    this.pagedArticles = this.articles.slice(startIndex, endIndex);
+    this.store.dispatch(new articlesActions.ChangePage(pageindex))
+  }
+
+  public selectArticle(id: string) {
+    this.store.dispatch(new articlesActions.SelectArticle(id));
   }
 }

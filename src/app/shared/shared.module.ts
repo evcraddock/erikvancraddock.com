@@ -5,7 +5,6 @@ import { MaterialModule } from '../material';
 import { AboutMeComponent } from './components/about/about-me.component';
 import { MarkdownToHtmlPipe, SafePipe } from './pipes';
 
-import { ArticlesListItemComponent } from './components/articles-list-item/articles-list-item.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -16,13 +15,11 @@ import { RouterModule } from '@angular/router';
     ],
     declarations: [
         AboutMeComponent,
-        ArticlesListItemComponent,
         MarkdownToHtmlPipe,
         SafePipe
     ],
     exports: [
         AboutMeComponent,
-        ArticlesListItemComponent,
         MarkdownToHtmlPipe,
         SafePipe
     ]

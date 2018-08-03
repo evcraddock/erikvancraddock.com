@@ -2,6 +2,8 @@ import {
     ActionReducerMap,
     ActionReducer,
     MetaReducer,
+    createFeatureSelector,
+    createSelector,
   } from '@ngrx/store';
   
 import { environment } from '../../environments/environment';
@@ -18,14 +20,20 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-    return function(state: State, action: any): State {
-      console.log('state', state);
-      console.log('action', action);
-  
-      return reducer(state, action);
-    };
-  }
+  return function(state: State, action: any): State {
+    console.log('state', state);
+    console.log('action', action);
+
+    return reducer(state, action);
+  };
+}
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze]
   : []; 
+
+export const getRouterState = createFeatureSelector<fromRouter.RouterReducerState<RouterStateUrl>>('router');
+export const getRouteCategory = createSelector(
+  getRouterState,
+  state => state.state.params["category"]
+)

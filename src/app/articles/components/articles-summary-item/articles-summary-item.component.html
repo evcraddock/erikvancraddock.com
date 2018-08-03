@@ -1,8 +1,8 @@
 <div *ngIf="article">  
     <mat-card class="article-card">
-        <a [routerLink]= "['/articles', article.url]"><img mat-card-image *ngIf="article.banner" [src]="article.banner" alt=""></a>
+        <a style="cursor: pointer" (click)="selectArticle()"><img mat-card-image *ngIf="article.banner" [src]="article.banner" alt=""></a>
         <span class="article-header">
-            <a [routerLink]= "['/articles', article.url]">
+            <a style="cursor: pointer" (click)="selectArticle()">
                 <h1 class="article-title">{{ article.title }}</h1>
             </a>
         </span>
@@ -16,7 +16,7 @@
         </mat-card-content>
         <mat-card-actions>
             <mat-chip-list>
-                <mat-chip color="primary" [routerLink]="['/articles', article.url]" style="cursor: pointer;" selected="true">Read More</mat-chip>
+                <mat-chip color="primary" (click)="selectArticle()" style="cursor: pointer;" selected="true">Read More</mat-chip>
             </mat-chip-list>
             <span class="icon-content" style="float: right;" *ngFor="let tag of article.tags">
                 <mat-icon>label_outline</mat-icon> {{tag}}

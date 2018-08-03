@@ -20,6 +20,13 @@ export class ArticleService {
         });
     }
 
+    getArticle(id: string): Observable<IArticle> {
+        this.authorizationService.loadToken();
+        const url = this.serverUrl + '/articles/' + id;
+
+        return this.http.get<IArticle>(url);
+    }
+
     private handleArticleError(error: Response) {
         let msg = '';
         if (error.status === 404) {

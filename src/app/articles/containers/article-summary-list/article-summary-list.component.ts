@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PageEvent } from '@angular/material';
 import { Store, select } from '@ngrx/store';
@@ -12,7 +12,6 @@ import { Profile } from '../../../shared/models/profile';
 
 @Component({
   selector: 'app-home',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './article-summary-list.component.html',
   styleUrls: ['./article-summary-list.component.scss']
 })
@@ -45,5 +44,9 @@ export class ArticleSummaryListComponent implements OnInit {
     }
 
     this.store.dispatch(new articlesActions.ChangePage(pageindex))
+  }
+
+  public selectArticle(id: string) {
+    this.store.dispatch(new articlesActions.SelectArticle(id));
   }
 }

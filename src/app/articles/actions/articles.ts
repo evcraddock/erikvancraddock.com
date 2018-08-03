@@ -6,6 +6,9 @@ export enum ArticlesActionTypes {
     LoadSuccess = '[Articles] Load List Successesfully',
     LoadFail = '[Articles] Failed to Load List',
     ChangePage = '[Articles] Change Page',
+    SelectArticle = '[Articles] Set Selected Article',
+    SelectArticleSuccess = '[Articles] Set Selected Article Successfully',
+    SelectArticleFail = '[Articles] Failed to Set Selected Article',
 }
 
 export class Load implements Action {
@@ -28,8 +31,26 @@ export class ChangePage implements Action {
     constructor(public payload: number) {}
 }
 
+export class SelectArticle implements Action {
+    readonly type = ArticlesActionTypes.SelectArticle;
+    constructor(public payload: string) {}
+}
+
+export class SelectArticleSuccess implements Action {
+    readonly type = ArticlesActionTypes.SelectArticleSuccess;
+    constructor(public payload: { article: Article }){}
+}
+
+export class SelectArticleFail implements Action {
+    readonly type = ArticlesActionTypes.SelectArticleFail;
+    constructor(public payload: any) {}
+}
+
 export type ArticlesActions = 
     Load
     | LoadSuccess
     | LoadFail
     | ChangePage
+    | SelectArticle
+    | SelectArticleSuccess
+    | SelectArticleFail

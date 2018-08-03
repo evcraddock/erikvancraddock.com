@@ -26,6 +26,11 @@ export const getSelectedArticleId = createSelector(
     fromArticles.getSelectedId
 )
 
+export const getSelectedArticle = createSelector(
+    getArticlesEntities,
+    state => state.selectedArticle
+)
+
 export const getArticlePage = createSelector(
     getArticlesEntities,
     fromArticles.getPage
@@ -37,11 +42,3 @@ export const {
     selectAll: getAllArticles,
     selectTotal: getTotalArticles,
 } = fromArticles.adapter.getSelectors(getArticlesEntities);
-
-export const getSelectedArticle = createSelector(
-    getArticleEntities,
-    getSelectedArticleId,
-    (entities, selectedId) => {
-      return selectedId && entities[selectedId];
-    }
-  );

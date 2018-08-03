@@ -6,6 +6,7 @@ import { ArticlesActions, ArticlesActionTypes } from '../actions/articles';
 
 export interface State extends EntityState<Article> {
     selectedArticleId: string | null;
+    selectedArticle: Article | null;
     page: Page | null;
 }
 
@@ -16,8 +17,9 @@ export const adapter: EntityAdapter<Article> = createEntityAdapter<Article>({
 
 export const initialState: State = adapter.getInitialState({
     selectedArticleId: null,
+    selectedArticle: null,
     page: {
-        pageSize: 2,
+        pageSize: 5,
         pageIndex: 0,
         startIndex: 0,
         endIndex: 0
@@ -30,9 +32,9 @@ export function reducer(
 ): State {
     switch (action.type) {
         case ArticlesActionTypes.Load: {
-            return {
+            return adapter.removeAll({
                 ...state,
-            };
+            });
         }
 
         case ArticlesActionTypes.LoadSuccess: {
@@ -61,6 +63,30 @@ export function reducer(
                     endIndex: start + state.page.pageSize
                 } as Page
             }
+        }
+
+        case ArticlesActionTypes.SelectArticle: {
+            return {
+                ...state,
+                selectedArticleId: action.payload
+            }
+        }
+
+        case ArticlesActionTypes.SelectArticleSuccess: {
+            return {
+                ...state,
+                selectedArticle: action.payload.article
+            }
+        }
+
+        case ArticlesActionTypes.SelectArticleFail: {
+            return {
+                ...state
+            }
+        }
+
+        default: {
+            return state;
         }
     }
 }

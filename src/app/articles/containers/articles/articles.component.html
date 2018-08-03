@@ -4,18 +4,17 @@
     </div>
 
     <div fxFlex="none" style="width: 800px">
-        <h2 class="capitalize">{{title}}</h2>
-        <div *ngIf="articles.length > pagesize">
+        <h2 class="capitalize">{{ category$ | async }}</h2>
+        <div *ngIf="(articles$ | async).length > (articlePage$ | async).pageSize">
             <mat-paginator
-                [length]="articles.length"
-                [pageSize]="pagesize"
+                [length]="(articles$ | async).length"
+                [pageSize]="(articlePage$ | async).pageSize"
                 (page)="pageEvent = changePage($event)">
             </mat-paginator>
         </div>
         <div *ngIf="hasArticles()">
-            
-            <span *ngFor="let article of pagedArticles">
-                <articles-listitem [article]="article"></articles-listitem>
+            <span *ngFor="let article of articles$ | async | slice:(articlePage$ | async).startIndex:(articlePage$ | async).endIndex">
+                <articles-listitem [article]="article" (select)="selectArticle($event)"></articles-listitem>
             </span>
         </div>
 
