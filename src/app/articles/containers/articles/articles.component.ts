@@ -5,7 +5,6 @@ import { Article, Page } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { PageEvent } from '@angular/material';
-import { ImageService } from '../../../core/services/image.service';
 
 import * as fromRoot from '../../../reducers';
 import * as fromArticles from '../../reducers';

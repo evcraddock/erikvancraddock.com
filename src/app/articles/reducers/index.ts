@@ -21,9 +21,16 @@ export const getArticlesEntities = createSelector(
     state => state.articles
 );
 
+
+
 export const getSelectedArticleId = createSelector(
     getArticlesEntities,
     fromArticles.getSelectedId
+)
+
+export const getArticles = createSelector(
+    getArticlesEntities,
+    state => state.entities
 )
 
 export const getSelectedArticle = createSelector(

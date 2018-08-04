@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { Store, Action, select } from '@ngrx/store';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { switchMap, catchError, map, withLatestFrom, tap } from 'rxjs/operators';
+import { switchMap, catchError, map, withLatestFrom, tap, first } from 'rxjs/operators';
+import * as marked from 'marked';
 
-import { Article } from '../../shared/models';
-import { ArticlesActionTypes, Load, LoadSuccess, LoadFail, SelectArticle, SelectArticleSuccess, SelectArticleFail } from '../actions/articles';
+import { Article, IArticle } from '../../shared/models';
+import { ArticlesActionTypes, Load, LoadSuccess, LoadFail, SelectArticle, SelectArticleSuccess, SelectArticleFail, LoadArticle } from '../actions/articles';
 import { ArticleService } from '../../core/services/article.service';
 import { ImageService } from '../../core/services/image.service';
 import * as fromRoot from '../../reducers';
+import * as fromArticles from '../reducers';
 
 @Injectable()
 export class ArticlesEffects {
@@ -47,14 +49,23 @@ export class ArticlesEffects {
     );
 
     @Effect()
-    SelectArticle$: Observable<Action> = this.actions$.pipe(
-        ofType(ArticlesActionTypes.SelectArticle),
-        switchMap((action: SelectArticle) => {
-            return this.articleService.getArticle(action.payload)
+    LoadArticle$: Observable<Action> = this.actions$.pipe(
+        ofType(ArticlesActionTypes.LoadArticle),
+        withLatestFrom(this.store$.pipe(select(fromRoot.getRouterState))),
+        switchMap(([action, state]) => {
+            let params = null;
+            if (state.state.params['permalink']) {
+                const url : string = state.state.params['permalink'];
+                params = new HttpParams().set('url', url);
+            }
+
+            return this.articleService.getArticles(params)
             .pipe(
-                map((res: Article) => {
-                    const article = Article.mapFrom(res);
+                map((res: Article[]) => {
+
+                    const article = Article.mapFrom(res[0]);
                     article.banner = this.imageService.getBannerImage(article);
+                    article.content = this.transformContent(article);
 
                     return new SelectArticleSuccess({article: article})
                 })
@@ -64,12 +75,31 @@ export class ArticlesEffects {
     )
 
     @Effect({dispatch: false})
-    selectArticleSuccess$: Observable<Action> = this.actions$.pipe(
-        ofType(ArticlesActionTypes.SelectArticleSuccess),
-        tap((action: SelectArticleSuccess) => {
-            this.router.navigate(['/articles/' + action.payload.article.url])
+    SelectArticle$: Observable<[Action, Article | any]> = this.actions$.pipe(
+        ofType(ArticlesActionTypes.SelectArticle),
+        withLatestFrom(this.store$.pipe(select(fromArticles.getArticlesEntities))),
+        tap(([action, articles]) => {
+            const saction = action as SelectArticle;
+            const article: Article = articles.entities[saction.payload];
+            this.router.navigate(['/articles/' + article.url])
         })
-    );
+    )
+
+    transformContent(article: Article) {
+        const renderer = new marked.Renderer();
+        const url = this.imageService.serverUrl + '/images/' + article.id;
+        renderer.paragraph = function (text: string) {
+            const regimg = /{imageservice}/gi;
+            const imgtext = text.replace(regimg, url);
+    
+            const regid = /{articleid}/gi;
+            const newtext = imgtext.replace(regid, article.id);
+    
+            return '<p class="article-entry">' + newtext + '</p>'
+        }
+    
+        return marked(article.content, { renderer: renderer }) ;
+      }
 
     constructor(
         private store$: Store<fromRoot.State>,

@@ -15,7 +15,8 @@ import {
 
 import {
     ArticlesSummaryItemComponent,
-    ArticlesListItemComponent
+    ArticlesListItemComponent,
+    ArticlesDetailCardComponent,
 } from './components';
 
 import { StoreModule } from '@ngrx/store';
@@ -28,6 +29,8 @@ export const COMPONENTS = [
     ArticleDetailComponent,
     ArticlesSummaryItemComponent,
     ArticlesListItemComponent,
+    ArticleDetailComponent,
+    ArticlesDetailCardComponent,
   ];
 
 @NgModule({

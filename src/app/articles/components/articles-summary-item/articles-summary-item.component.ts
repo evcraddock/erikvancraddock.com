@@ -9,8 +9,9 @@ import { EventEmitter } from '@angular/core';
     styleUrls: ['./article-summary-item.component.scss']
 })
 export class ArticlesSummaryItemComponent {
+    
     @Input() article: Article;
-    @Output('select') select = new EventEmitter();
+    @Output() select = new EventEmitter();
 
     public selectArticle() {
         this.select.emit(this.article.id);

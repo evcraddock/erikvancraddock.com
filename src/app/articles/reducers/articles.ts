@@ -3,6 +3,7 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Article, Page } from '../../shared/models';
 
 import { ArticlesActions, ArticlesActionTypes } from '../actions/articles';
+import { getSelectedArticle } from '.';
 
 export interface State extends EntityState<Article> {
     selectedArticleId: string | null;
@@ -19,7 +20,7 @@ export const initialState: State = adapter.getInitialState({
     selectedArticleId: null,
     selectedArticle: null,
     page: {
-        pageSize: 5,
+        pageSize: 2,
         pageIndex: 0,
         startIndex: 0,
         endIndex: 0
@@ -31,6 +32,14 @@ export function reducer(
     action: ArticlesActions
 ): State {
     switch (action.type) {
+        case ArticlesActionTypes.LoadArticle: {
+            return {
+                ...state,
+                selectedArticleId: state.selectedArticleId,
+                selectedArticle: null
+            }
+        }
+
         case ArticlesActionTypes.Load: {
             return adapter.removeAll({
                 ...state,
@@ -40,7 +49,8 @@ export function reducer(
         case ArticlesActionTypes.LoadSuccess: {
             return adapter.addMany(action.payload.articles, {
                 ...state,
-                selectedArticleId: state.selectedArticleId
+                selectedArticleId: null,
+                selectedArticle: null,
             } as State);
         }
 
@@ -68,13 +78,15 @@ export function reducer(
         case ArticlesActionTypes.SelectArticle: {
             return {
                 ...state,
-                selectedArticleId: action.payload
+                selectedArticleId: action.payload,
+                selectedArticle: null
             }
         }
 
         case ArticlesActionTypes.SelectArticleSuccess: {
             return {
                 ...state,
+                selectedArticleId: state.selectedArticleId,
                 selectedArticle: action.payload.article
             }
         }
@@ -93,3 +105,4 @@ export function reducer(
 
 export const getSelectedId = (state: State) => state.selectedArticleId;
 export const getPage = (state: State) => state.page;
+export const getArticles = (state: State) => state.entities;

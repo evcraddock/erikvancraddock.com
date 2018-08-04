@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import { Article } from '../../shared/models';
 
 export enum ArticlesActionTypes {
+    LoadArticle = '[Articles] Load Article',
     Load = '[Articles] Load Article List',
     LoadSuccess = '[Articles] Load List Successesfully',
     LoadFail = '[Articles] Failed to Load List',
@@ -9,6 +10,10 @@ export enum ArticlesActionTypes {
     SelectArticle = '[Articles] Set Selected Article',
     SelectArticleSuccess = '[Articles] Set Selected Article Successfully',
     SelectArticleFail = '[Articles] Failed to Set Selected Article',
+}
+
+export class LoadArticle implements Action {
+    readonly type = ArticlesActionTypes.LoadArticle;
 }
 
 export class Load implements Action {
@@ -47,7 +52,8 @@ export class SelectArticleFail implements Action {
 }
 
 export type ArticlesActions = 
-    Load
+    LoadArticle
+    | Load
     | LoadSuccess
     | LoadFail
     | ChangePage

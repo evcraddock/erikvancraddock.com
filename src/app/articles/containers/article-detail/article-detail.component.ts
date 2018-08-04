@@ -6,6 +6,12 @@ import { Profile } from '../../../shared/models/profile';
 import { ImageService } from '../../../core/services/image.service';
 
 import * as marked from 'marked';
+import { Observable } from 'rxjs';
+
+import * as fromRoot from '../../../reducers';
+import * as fromArticles from '../../reducers';
+import { Store, select } from '@ngrx/store';
+import * as articlesActions from '../../actions/articles';
 
 @Component({
   selector: 'app-news-detail',
@@ -13,45 +19,16 @@ import * as marked from 'marked';
   styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit {
-  protected article: Article = <Article>{};
-  protected articleHtml = '';
+  article$: Observable<Article>;
+  articleId$: Observable<string>;
   protected profile: Profile = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private imageService: ImageService
-  ) { }
+  constructor(private store: Store<fromRoot.State>) {
+      this.article$ = store.pipe(select(fromArticles.getSelectedArticle));
+  }
 
   ngOnInit() {
     this.profile = Profile.getDefaultProfile();
-    this.loadData();
-  }
-
-  loadData() {
-    if (this.route.data) {
-      this.route.data.forEach(data => {
-        if (data['article'] instanceof Array && data['article'].length > 0) {
-          this.article = Article.mapFrom(data['article'][0]);
-          this.article.banner = this.imageService.getBannerImage(this.article);
-          this.transformContent(this.article);
-        }
-      });
-    }
-  }
-
-  transformContent(article: Article) {
-    const renderer = new marked.Renderer();
-    const url = this.imageService.serverUrl + '/images/' + article.id;
-    renderer.paragraph = function (text: string) {
-        const regimg = /{imageservice}/gi;
-        const imgtext = text.replace(regimg, url);
-
-        const regid = /{articleid}/gi;
-        const newtext = imgtext.replace(regid, article.id);
-
-        return '<p class="article-entry">' + newtext + '</p>'
-    }
-
-    this.articleHtml = marked(article.content, { renderer: renderer }) ;
+    this.store.dispatch(new articlesActions.LoadArticle());
   }
 }
