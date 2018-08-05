@@ -1,16 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 
 import { Article } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
-import { ImageService } from '../../../core/services/image.service';
-
-import * as marked from 'marked';
-import { Observable } from 'rxjs';
-
 import * as fromRoot from '../../../reducers';
 import * as fromArticles from '../../reducers';
-import { Store, select } from '@ngrx/store';
 import * as articlesActions from '../../actions/articles';
 
 @Component({

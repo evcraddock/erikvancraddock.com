@@ -1,9 +1,7 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import { Article, Page } from '../../shared/models';
-
 import { ArticlesActions, ArticlesActionTypes } from '../actions/articles';
-import { getSelectedArticle } from '.';
 
 export interface State extends EntityState<Article> {
     selectedArticleId: string | null;
@@ -37,7 +35,7 @@ export function reducer(
                 ...state,
                 selectedArticleId: state.selectedArticleId,
                 selectedArticle: null
-            }
+            };
         }
 
         case ArticlesActionTypes.Load: {
@@ -72,7 +70,7 @@ export function reducer(
                     startIndex: start,
                     endIndex: start + state.page.pageSize
                 } as Page
-            }
+            };
         }
 
         case ArticlesActionTypes.SelectArticle: {
@@ -80,7 +78,7 @@ export function reducer(
                 ...state,
                 selectedArticleId: action.payload,
                 selectedArticle: null
-            }
+            };
         }
 
         case ArticlesActionTypes.SelectArticleSuccess: {
@@ -88,13 +86,13 @@ export function reducer(
                 ...state,
                 selectedArticleId: state.selectedArticleId,
                 selectedArticle: action.payload.article
-            }
+            };
         }
 
         case ArticlesActionTypes.SelectArticleFail: {
             return {
                 ...state
-            }
+            };
         }
 
         default: {

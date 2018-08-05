@@ -8,6 +8,4 @@ import { Component, Output, EventEmitter } from '@angular/core';
 </mat-toolbar>
   `,
 })
-export class ToolbarComponent {
-  
-}
+export class ToolbarComponent {}

@@ -6,20 +6,20 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material';
 import { SharedModule } from '../shared/shared.module';
 
-import { 
+import {
   AppComponent,
   NotFoundPageComponent,
 } from './containers';
 
-import { 
+import {
   NavItemComponent,
   ToolbarComponent,
 } from './components';
 
-import { 
-  ArticleResolver, 
-  ArticleService, 
-  ArticlesResolver 
+import {
+  ArticleResolver,
+  ArticleService,
+  ArticlesResolver
 } from './services';
 
 import { ImageService } from './services/image.service';
@@ -33,9 +33,9 @@ export const COMPONENTS = [
 
 @NgModule({
   imports: [
-    CommonModule, 
-    RouterModule, 
-    MaterialModule, 
+    CommonModule,
+    RouterModule,
+    MaterialModule,
     FlexLayoutModule,
     SharedModule
   ],
@@ -46,10 +46,10 @@ export class CoreModule {
   static forRoot() {
     return {
       ngModule: CoreModule,
-      providers: [ 
+      providers: [
             ImageService,
-            ArticleResolver, 
-            ArticleService, 
+            ArticleResolver,
+            ArticleService,
             ArticlesResolver
         ]
     };

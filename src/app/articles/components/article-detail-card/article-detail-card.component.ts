@@ -6,6 +6,6 @@ import { Article } from '../../../shared/models';
     templateUrl: './article-detail-card.component.html',
     styleUrls: ['./article-detail-card.component.scss']
 })
-export class ArticlesDetailCardComponent { 
+export class ArticlesDetailCardComponent {
     @Input() article: Article;
 }

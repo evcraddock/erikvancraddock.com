@@ -6,7 +6,6 @@ import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as fromArticles from '../../reducers';
 import * as articlesActions from '../../actions/articles';
-
 import { Article, Page } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
 
@@ -21,8 +20,7 @@ export class ArticleSummaryListComponent implements OnInit {
   pageEvent: PageEvent;
   profile: Profile = null;
 
-  constructor(private store: Store<fromRoot.State>) 
-  {
+  constructor(private store: Store<fromRoot.State>) {
       this.articles$ = store.pipe(select(fromArticles.getAllArticles));
       this.articlePage$ = store.pipe(select(fromArticles.getArticlePage));
   }
@@ -43,7 +41,7 @@ export class ArticleSummaryListComponent implements OnInit {
       pageindex = event.pageIndex;
     }
 
-    this.store.dispatch(new articlesActions.ChangePage(pageindex))
+    this.store.dispatch(new articlesActions.ChangePage(pageindex));
   }
 
   public selectArticle(id: string) {

@@ -12,7 +12,7 @@ export interface State extends fromRoot.State {
 
 export const reducers: ActionReducerMap<ArticlesState> = {
     articles: fromArticles.reducer,
-}
+};
 
 export const getArticlesState = createFeatureSelector<ArticlesState>('articles');
 
@@ -26,22 +26,22 @@ export const getArticlesEntities = createSelector(
 export const getSelectedArticleId = createSelector(
     getArticlesEntities,
     fromArticles.getSelectedId
-)
+);
 
 export const getArticles = createSelector(
     getArticlesEntities,
     state => state.entities
-)
+);
 
 export const getSelectedArticle = createSelector(
     getArticlesEntities,
     state => state.selectedArticle
-)
+);
 
 export const getArticlePage = createSelector(
     getArticlesEntities,
     fromArticles.getPage
-)
+);
 
 export const {
     selectIds: getArticleIds,

@@ -9,9 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
     styleUrls: ['./article-list-item.component.scss']
 })
 export class ArticlesListItemComponent implements OnInit {
-    
     @Input() article: Article;
-    @Output('select') select = new EventEmitter();
+    @Output() select = new EventEmitter();
     private bannerUrl;
 
     constructor(private sanitization: DomSanitizer) { }

@@ -1,14 +1,14 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Router, NavigationEnd } from '@angular/router';
+import { PageEvent } from '@angular/material';
+import { Observable } from 'rxjs';
+
 import { Article, Page } from '../../../shared/models';
 import { Profile } from '../../../shared/models/profile';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { PageEvent } from '@angular/material';
-
 import * as fromRoot from '../../../reducers';
 import * as fromArticles from '../../reducers';
-import { Observable } from 'rxjs';
 import * as articlesActions from '../../actions/articles';
 
 @Component({
@@ -22,7 +22,6 @@ export class ArticlesComponent implements OnInit {
   category$: Observable<string> = null;
   public profile: Profile;
   public pageEvent: PageEvent;
-  
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -32,7 +31,7 @@ export class ArticlesComponent implements OnInit {
       this.articlePage$ = store.pipe(select(fromArticles.getArticlePage));
       this.category$ = store.pipe(select(fromRoot.getRouteCategory));
 
-      this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      this.router.routeReuseStrategy.shouldReuseRoute = function() {
         return false;
       };
 
@@ -60,7 +59,7 @@ export class ArticlesComponent implements OnInit {
       pageindex = event.pageIndex;
     }
 
-    this.store.dispatch(new articlesActions.ChangePage(pageindex))
+    this.store.dispatch(new articlesActions.ChangePage(pageindex));
   }
 
   public selectArticle(id: string) {

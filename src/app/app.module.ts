@@ -24,9 +24,9 @@ import { reducers, metaReducers } from './reducers';
 
 export const jwtOptionsFactory = (authService) => ({
   tokenGetter: authService.getToken,
-  whitelistedDomains: ['localhost:8080']
-  ,blacklistDomains: ['localhost:4200', 'https://erikvan.auth0.com/oauth/token']
-})
+  whitelistedDomains: ['localhost:8080'],
+  blacklistDomains: ['localhost:4200', 'https://erikvan.auth0.com/oauth/token']
+});
 
 @NgModule({
   imports: [
@@ -50,7 +50,6 @@ export const jwtOptionsFactory = (authService) => ({
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
     }),
-    
     StoreDevtoolsModule.instrument({
       name: 'ErikVanCraddock.Com Site',
       logOnly: environment.production,

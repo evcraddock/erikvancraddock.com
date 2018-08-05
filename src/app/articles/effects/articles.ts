@@ -8,7 +8,14 @@ import { switchMap, catchError, map, withLatestFrom, tap, first } from 'rxjs/ope
 import * as marked from 'marked';
 
 import { Article, IArticle } from '../../shared/models';
-import { ArticlesActionTypes, Load, LoadSuccess, LoadFail, SelectArticle, SelectArticleSuccess, SelectArticleFail, LoadArticle } from '../actions/articles';
+import {
+    ArticlesActionTypes,
+    LoadSuccess,
+    LoadFail,
+    SelectArticle,
+    SelectArticleSuccess,
+    SelectArticleFail,
+} from '../actions/articles';
 import { ArticleService } from '../../core/services/article.service';
 import { ImageService } from '../../core/services/image.service';
 import * as fromRoot from '../../reducers';
@@ -23,27 +30,25 @@ export class ArticlesEffects {
         switchMap(([action, state]) => {
             let params = null;
             if (state.state.params['category']) {
-                const cat : string = state.state.params['category'];
+                const cat: string = state.state.params['category'];
                 params = new HttpParams().set('categories', cat);
             }
             return this.articleService.getArticles(params)
             .pipe(
-                map((res: Article[]) => { 
-                    const articles: Article[] = []
-                    for (let item of res) {
+                map((res: Article[]) => {
+                    const articles: Article[] = [];
+                    for (const item of res) {
                         const article = Article.mapFrom(item);
                         article.banner = this.imageService.getBannerImage(article);
-            
                         articles.push(article);
                     }
-                                        
                     const payload = {
                         articles: articles
-                    }
+                    };
 
                     return new LoadSuccess(payload);
                 }
-            ))
+            ));
         }),
         catchError(error => of(new LoadFail(error)))
     );
@@ -55,7 +60,7 @@ export class ArticlesEffects {
         switchMap(([action, state]) => {
             let params = null;
             if (state.state.params['permalink']) {
-                const url : string = state.state.params['permalink'];
+                const url: string = state.state.params['permalink'];
                 params = new HttpParams().set('url', url);
             }
 
@@ -67,12 +72,12 @@ export class ArticlesEffects {
                     article.banner = this.imageService.getBannerImage(article);
                     article.content = this.transformContent(article);
 
-                    return new SelectArticleSuccess({article: article})
+                    return new SelectArticleSuccess({article: article});
                 })
-            )
+            );
         }),
         catchError(error => of(new SelectArticleFail(error)))
-    )
+    );
 
     @Effect({dispatch: false})
     SelectArticle$: Observable<[Action, Article | any]> = this.actions$.pipe(
@@ -81,9 +86,9 @@ export class ArticlesEffects {
         tap(([action, articles]) => {
             const saction = action as SelectArticle;
             const article: Article = articles.entities[saction.payload];
-            this.router.navigate(['/articles/' + article.url])
+            this.router.navigate(['/articles/' + article.url]);
         })
-    )
+    );
 
     transformContent(article: Article) {
         const renderer = new marked.Renderer();
@@ -91,13 +96,11 @@ export class ArticlesEffects {
         renderer.paragraph = function (text: string) {
             const regimg = /{imageservice}/gi;
             const imgtext = text.replace(regimg, url);
-    
             const regid = /{articleid}/gi;
             const newtext = imgtext.replace(regid, article.id);
-    
-            return '<p class="article-entry">' + newtext + '</p>'
-        }
-    
+            return '<p class="article-entry">' + newtext + '</p>';
+        };
+
         return marked(article.content, { renderer: renderer }) ;
       }
 

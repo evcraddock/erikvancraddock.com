@@ -7,7 +7,7 @@ import { MaterialModule } from '../material';
 import { SharedModule } from '../shared/shared.module';
 import { reducers } from './reducers';
 
-import { 
+import {
     ArticlesComponent,
     ArticleDetailComponent,
     ArticleSummaryListComponent

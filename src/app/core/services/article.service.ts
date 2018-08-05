@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IArticle, Article } from '../../shared/models/article';
-import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { IArticle, Article } from '../../shared/models/article';
+import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -40,19 +41,18 @@ export class ArticleService {
 
     private convertToArticle(articleObj: any): IArticle {
         const article = new Article();
-  
-        article.id=articleObj.id,
-        article.title=articleObj.title,
-        article.url=articleObj.url,
-        article.content=articleObj.content,
-        article.publishDate=articleObj.publishDate,
-        article.createdAt=articleObj.createdAt,
-        article.updatedAt=articleObj.updatedAt,
-        article.dataSource=articleObj.dataSource,
-        article.banner=articleObj.banner,
-        article.author=articleObj.author,
-        article.categories=articleObj.categories,
-        article.tags=articleObj.tags
+        article.id = articleObj.id,
+        article.title = articleObj.title,
+        article.url = articleObj.url,
+        article.content = articleObj.content,
+        article.publishDate = articleObj.publishDate,
+        article.createdAt = articleObj.createdAt,
+        article.updatedAt = articleObj.updatedAt,
+        article.dataSource = articleObj.dataSource,
+        article.banner = articleObj.banner,
+        article.author = articleObj.author,
+        article.categories = articleObj.categories,
+        article.tags = articleObj.tags;
 
         return article;
     }

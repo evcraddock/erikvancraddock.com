@@ -9,7 +9,7 @@ export class ArticlesResolver implements Resolve<any> {
 
     resolve(route: ActivatedRouteSnapshot) {
         if (route.params['category']) {
-            const cat : string = route.params['category'];
+            const cat: string = route.params['category'];
 
             const params = new HttpParams().set('categories', cat);
             return this.articleService.getArticles(params);

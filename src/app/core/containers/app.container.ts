@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { MatIconRegistry } from "@angular/material";
+import { Component } from '@angular/core';
+import { MatIconRegistry } from '@angular/material';
 
 @Component({
     selector: 'evc-app',
@@ -25,7 +25,7 @@ import { MatIconRegistry } from "@angular/material";
     </evc-toolbar>
 
     <router-outlet></router-outlet>
-</div>  
+</div>
 `,
 styles: [`
     .secondary {
@@ -38,11 +38,9 @@ styles: [`
         font-size: 16px;
         text-decoration: none;
     }
-    
     .nav {
         padding: 2px;
     }
-    
     .nav-spacer {
         flex: 1 1 auto;
     }

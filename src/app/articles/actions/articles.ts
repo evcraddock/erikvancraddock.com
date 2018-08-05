@@ -43,7 +43,7 @@ export class SelectArticle implements Action {
 
 export class SelectArticleSuccess implements Action {
     readonly type = ArticlesActionTypes.SelectArticleSuccess;
-    constructor(public payload: { article: Article }){}
+    constructor(public payload: { article: Article }) {}
 }
 
 export class SelectArticleFail implements Action {
@@ -51,7 +51,7 @@ export class SelectArticleFail implements Action {
     constructor(public payload: any) {}
 }
 
-export type ArticlesActions = 
+export type ArticlesActions =
     LoadArticle
     | Load
     | LoadSuccess
@@ -59,4 +59,4 @@ export type ArticlesActions =
     | ChangePage
     | SelectArticle
     | SelectArticleSuccess
-    | SelectArticleFail
+    | SelectArticleFail;
