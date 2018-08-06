@@ -1,0 +1,33 @@
+<div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="none" style="width:300px">
+        <app-about-me [profile]="profile"></app-about-me>
+    </div>
+
+    <div fxFlex="none" style="width: 700px">
+        <h2 class="capitalize">Articles</h2>
+        <div *ngIf="hasArticles()">
+            <span *ngFor="let article of articles$ | async | slice:(articlePage$ | async).startIndex:(articlePage$ | async).endIndex">
+                <app-articles-summaryitem style="padding: 5px;" [article]="article" (select)="selectArticle($event)"></app-articles-summaryitem>
+            </span>
+            <div *ngIf="(articles$ | async).length > (articlePage$ | async).pageSize">
+                <mat-paginator
+                    [length]="(articles$ | async).length"
+                    [pageSize]="(articlePage$ | async).pageSize"
+                    (page)="pageEvent = changePage($event)">
+                </mat-paginator>
+            </div>
+        </div>
+
+        <div *ngIf="!hasArticles()">
+            No articles were found!
+        </div>
+    </div>
+
+    <div fxFlex="none" style="width:300px">
+            
+    </div>
+
+    <div fxFlex="50">
+            
+    </div>
+</div>

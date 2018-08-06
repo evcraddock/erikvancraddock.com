@@ -1,12 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './app/home/home.component';
-import { ArticlesComponent, ArticleDetailComponent } from './app/articles';
-import { ArticleResolver, ArticlesResolver } from './app/shared/services';
+import { ArticlesComponent, ArticleDetailComponent, ArticleSummaryListComponent } from './app/articles/containers';
 export const appRoutes: Routes = [
 
-    { path: '', component: HomeComponent, resolve: { articles: ArticlesResolver } },
-    { path: ':category', component: ArticlesComponent, resolve: { articles: ArticlesResolver } },
-    { path: 'articles/:permalink', component: ArticleDetailComponent, resolve: { article: ArticleResolver } },
-    { path: ':year/:month/:day/:permalink', component:ArticleDetailComponent, resolve: { article: ArticleResolver}},
+    { path: '', component: ArticleSummaryListComponent },
+    { path: ':category', component: ArticlesComponent },
+    { path: 'articles/:permalink', component: ArticleDetailComponent },
+    { path: ':year/:month/:day/:permalink', component: ArticleDetailComponent},
     { path: '', redirectTo: '', pathMatch: 'full' }
 ];
