@@ -14,7 +14,7 @@
         </div>
         <div *ngIf="hasArticles()">
             <span *ngFor="let article of articles$ | async | slice:(articlePage$ | async).startIndex:(articlePage$ | async).endIndex">
-                <articles-listitem [article]="article" (select)="selectArticle($event)"></articles-listitem>
+                <app-articles-listitem [article]="article" (select)="selectArticle($event)"></app-articles-listitem>
             </span>
         </div>
 

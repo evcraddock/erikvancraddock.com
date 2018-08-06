@@ -16,7 +16,7 @@ import {
     SelectArticleSuccess,
     SelectArticleFail,
 } from '../actions/articles';
-import { ArticleService } from '../../core/services/article.service';
+import { ArticleService } from '../services/article.service';
 import { ImageService } from '../../core/services/image.service';
 import * as fromRoot from '../../reducers';
 import * as fromArticles from '../reducers';

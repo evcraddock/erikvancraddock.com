@@ -2,27 +2,27 @@ import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 
 @Component({
-    selector: 'evc-app',
+    selector: 'app-evc-app',
     template: `
 <div class="main-container">
-    <evc-toolbar>
+    <app-evc-toolbar>
         <span><a class="titlelink" [routerLink]="['/']">ERIK.VAN.CRADDOCK</a></span>
         <span class="nav"></span>
 
-        <evc-nav-item routerLink="/family" hint="Family">
+        <app-evc-nav-item routerLink="/family" hint="Family">
             Family
-        </evc-nav-item>
+        </app-evc-nav-item>
 
-        <evc-nav-item routerLink="/work" hint="Work">
+        <app-evc-nav-item routerLink="/work" hint="Work">
           Work
-        </evc-nav-item>
+        </app-evc-nav-item>
 
-        <evc-nav-item routerLink="/ideas" hint="ideas">
+        <app-evc-nav-item routerLink="/ideas" hint="ideas">
           Ideas
-        </evc-nav-item>
+        </app-evc-nav-item>
 
         <span class="nav-spacer"></span>
-    </evc-toolbar>
+    </app-evc-toolbar>
 
     <router-outlet></router-outlet>
 </div>

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { IArticle, Article } from '../../shared/models/article';
 import { environment } from '../../../environments/environment';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Injectable()
 export class ArticleService {

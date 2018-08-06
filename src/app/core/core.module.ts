@@ -12,22 +12,14 @@ import {
 } from './containers';
 
 import {
-  NavItemComponent,
   ToolbarComponent,
 } from './components';
-
-import {
-  ArticleResolver,
-  ArticleService,
-  ArticlesResolver
-} from './services';
 
 import { ImageService } from './services/image.service';
 
 export const COMPONENTS = [
   AppComponent,
   NotFoundPageComponent,
-  NavItemComponent,
   ToolbarComponent,
 ];
 
@@ -48,9 +40,6 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
             ImageService,
-            ArticleResolver,
-            ArticleService,
-            ArticlesResolver
         ]
     };
   }

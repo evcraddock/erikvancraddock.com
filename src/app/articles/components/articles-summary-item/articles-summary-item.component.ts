@@ -4,7 +4,7 @@ import { Article } from '../../../shared/models';
 import { EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'articles-summaryitem',
+    selector: 'app-articles-summaryitem',
     templateUrl: './articles-summary-item.component.html',
     styleUrls: ['./article-summary-item.component.scss']
 })

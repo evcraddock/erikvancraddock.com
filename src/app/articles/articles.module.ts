@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material';
 import { SharedModule } from '../shared/shared.module';
 import { reducers } from './reducers';
+import { ArticleService } from './services/article.service';
 
 import {
     ArticlesComponent,
@@ -46,6 +47,9 @@ export const COMPONENTS = [
     declarations: [
         COMPONENTS
     ],
-    exports: COMPONENTS
+    exports: COMPONENTS,
+    providers: [
+        ArticleService,
+    ]
 })
 export class ArticlesModule {}

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material';
 
-import { AboutMeComponent } from './components/about/about-me.component';
+import { AboutMeComponent, NavItemComponent } from './components';
 import { MarkdownToHtmlPipe, SafePipe } from './pipes';
 
 import { RouterModule } from '@angular/router';
@@ -15,11 +15,13 @@ import { RouterModule } from '@angular/router';
     ],
     declarations: [
         AboutMeComponent,
+        NavItemComponent,
         MarkdownToHtmlPipe,
         SafePipe
     ],
     exports: [
         AboutMeComponent,
+        NavItemComponent,
         MarkdownToHtmlPipe,
         SafePipe
     ]

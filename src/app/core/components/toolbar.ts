@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'evc-toolbar',
+  selector: 'app-evc-toolbar',
   template: `
 <mat-toolbar color="primary">
     <ng-content></ng-content>

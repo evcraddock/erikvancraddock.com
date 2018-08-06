@@ -4,7 +4,7 @@ import { Article } from '../../../shared/models';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-    selector: 'articles-listitem',
+    selector: 'app-articles-listitem',
     templateUrl: './articles-list-item.component.html',
     styleUrls: ['./article-list-item.component.scss']
 })
