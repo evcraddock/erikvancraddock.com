@@ -1,5 +1,5 @@
 <mat-card class="article-card" *ngIf="article">
-    <img mat-card-image *ngIf="article.banner" [src]="article.banner" alt=""/>
+    <div><img mat-card-image *ngIf="article.banner" [src]="article.banner" alt=""/></div>
     <span class="article-header">
         <h1 class="article-title">{{ article.title }}</h1>
     </span>

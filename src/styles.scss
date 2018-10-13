@@ -9,7 +9,7 @@ $accent:  mat-palette($mat-blue-grey, 700, A200, A400);
 $warn:    mat-palette($mat-red, 500);
 
 $theme: mat-light-theme($primary, $accent, $warn);
-$mat-font-family: 'ariel';
+$mat-font-family: 'Helvetica, Arial, sans-serif';
 
 @include angular-material-theme($theme);
 
@@ -17,6 +17,8 @@ $mat-font-family: 'ariel';
 body {
     font-family: $mat-font-family;
     font-weight: normal;
+    background-color: #f5f8f9;
+    font-size: 14px;
 }
 
 h1, h2, h3, h4 {
@@ -28,9 +30,8 @@ h1, h2, h3, h4 {
 }
 
 .outer {
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 1366px;
+    margin: 0;
 }
 .outer:before,
 .outer:after {
