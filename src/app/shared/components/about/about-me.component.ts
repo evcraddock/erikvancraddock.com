@@ -17,7 +17,6 @@ import { Profile } from '../../models/profile';
   }
 
   .aboutme {
-      width: 250px;
       padding: 5px;
   }
   `],

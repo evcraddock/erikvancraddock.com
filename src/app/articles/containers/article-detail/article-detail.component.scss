@@ -1,19 +1,17 @@
 @import '../articles/articles.component.scss';
 
-.article-entry h1,
-.widget h1 {
-  font-size: 2em;
+.article-entry h1 {
+  font-size: em;
 }
-.article-entry h2,
-.widget h2 {
+
+.article-entry h2 {
   font-size: 1.5em;
 }
-.article-entry h3,
-.widget h3 {
+
+.article-entry h3 {
   font-size: 1.3em;
 }
-.article-entry h4,
-.widget h4 {
+.article-entry h4 {
   font-size: 1.2em;
 }
 .article-entry h5,
@@ -25,8 +23,7 @@
   font-size: 1em;
   color: #999;
 }
-.article-entry hr,
-.widget hr {
+.article-entry hr {
   border: 1px dashed #eceff2;
 }
 .article-entry strong,

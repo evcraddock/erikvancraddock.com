@@ -5,26 +5,30 @@ import { MatIconRegistry } from '@angular/material';
     selector: 'app-evc-app',
     template: `
 <div class="main-container">
-    <app-evc-toolbar>
-        <span><a class="titlelink" [routerLink]="['/']">ERIK.VAN.CRADDOCK</a></span>
-        <span class="nav"></span>
+    <mat-toolbar color="primary">
+        <div class="" style="width: 100%">
+            <span><a class="titlelink" [routerLink]="['/']">ERIK.VAN.CRADDOCK</a></span>
+            <span class="nav"></span>
 
-        <app-evc-nav-item routerLink="/family" hint="Family">
-            Family
-        </app-evc-nav-item>
+            <app-evc-nav-item routerLink="/family" hint="Family">
+                Family
+            </app-evc-nav-item>
 
-        <app-evc-nav-item routerLink="/work" hint="Work">
-          Work
-        </app-evc-nav-item>
+            <app-evc-nav-item routerLink="/work" hint="Work">
+            Work
+            </app-evc-nav-item>
 
-        <app-evc-nav-item routerLink="/ideas" hint="ideas">
-          Ideas
-        </app-evc-nav-item>
+            <app-evc-nav-item routerLink="/ideas" hint="ideas">
+            Ideas
+            </app-evc-nav-item>
 
-        <span class="nav-spacer"></span>
-    </app-evc-toolbar>
+            <span class="nav-spacer"></span>
+        </div>
+    </mat-toolbar>
 
-    <router-outlet></router-outlet>
+    <div class="outer">
+        <router-outlet></router-outlet>
+    </div>
 </div>
 `,
 styles: [`
@@ -38,11 +42,21 @@ styles: [`
         font-size: 16px;
         text-decoration: none;
     }
-    .nav {
-        padding: 2px;
+
+    .titlelink:hover {
+        text-decoration: underline;
     }
+
+    .nav {
+        padding: 10px;
+    }
+
     .nav-spacer {
         flex: 1 1 auto;
+    }
+
+    .main-container {
+        background-color: #f5f8f9;
     }
 `],
 })

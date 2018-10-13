@@ -18,7 +18,7 @@ export const initialState: State = adapter.getInitialState({
     selectedArticleId: null,
     selectedArticle: null,
     page: {
-        pageSize: 2,
+        pageSize: 8,
         pageIndex: 0,
         startIndex: 0,
         endIndex: 0

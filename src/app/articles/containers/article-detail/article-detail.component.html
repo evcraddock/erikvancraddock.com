@@ -1,14 +1,10 @@
-<div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
-    <div fxFlex="none" style="width:300px">
+<div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="20" class="fullwidth">
         <app-about-me [profile]="profile"></app-about-me>
     </div>
 
-    <div fxFlex="none" style="width: 1100px">
+    <div fxFlex="80" class="fullwidth">
         <app-articles-detailcard [article]="article$ | async"></app-articles-detailcard>
-    </div>
-
-    <div fxFlex="50" >
-      
     </div>
 </div>
 
