@@ -9,7 +9,7 @@ import { AuthService } from '../../core/services/auth.service';
 @Injectable()
 export class ArticleService {
 
-    private serverUrl = environment.apiEndpoint;
+    private serverUrl = 'http://' + environment.apiEndpoint + '/api';
     constructor(private http: HttpClient, private authorizationService: AuthService) {}
 
     getArticles(params?: HttpParams): Observable<IArticle[]> {

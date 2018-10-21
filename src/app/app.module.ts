@@ -24,8 +24,7 @@ import { reducers, metaReducers } from './reducers';
 
 export const jwtOptionsFactory = (authService) => ({
   tokenGetter: authService.getToken,
-  whitelistedDomains: ['localhost:8080'],
-  blacklistDomains: ['localhost:4200', 'https://erikvan.auth0.com/oauth/token']
+  whitelistedDomains: [environment.apiEndpoint]
 });
 
 @NgModule({
