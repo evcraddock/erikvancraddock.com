@@ -4,16 +4,14 @@ import { Observable } from 'rxjs';
 
 import { IArticle, Article } from '../../shared/models/article';
 import { environment } from '../../../environments/environment';
-import { AuthService } from '../../core/services/auth.service';
 
 @Injectable()
 export class ArticleService {
 
     private serverUrl = 'http://' + environment.apiEndpoint + '/api';
-    constructor(private http: HttpClient, private authorizationService: AuthService) {}
+    constructor(private http: HttpClient) {}
 
     getArticles(params?: HttpParams): Observable<IArticle[]> {
-        this.authorizationService.loadToken();
         const url = this.serverUrl + '/articles';
 
         return this.http.get<IArticle[]>(url, {
@@ -22,7 +20,6 @@ export class ArticleService {
     }
 
     getArticle(id: string): Observable<IArticle> {
-        this.authorizationService.loadToken();
         const url = this.serverUrl + '/articles/' + id;
 
         return this.http.get<IArticle>(url);

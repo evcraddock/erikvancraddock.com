@@ -4,7 +4,7 @@ import { IArticle } from '../../shared/models';
 
 @Injectable()
 export class ImageService {
-    private serverUrl = 'http://' + environment.apiEndpoint + '/api/';
+    public serverUrl = 'http://' + environment.apiEndpoint + '/api/';
     constructor() {}
 
     getBannerImage(article: IArticle) {
