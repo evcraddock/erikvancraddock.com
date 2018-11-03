@@ -16,7 +16,7 @@ import * as articlesActions from '../../actions/articles';
 export class ArticleDetailComponent implements OnInit {
   article$: Observable<Article>;
   articleId$: Observable<string>;
-  protected profile: Profile = null;
+  profile: Profile = null;
 
   constructor(private store: Store<fromRoot.State>) {
       this.article$ = store.pipe(select(fromArticles.getSelectedArticle));

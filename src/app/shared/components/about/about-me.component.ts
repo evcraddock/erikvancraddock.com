@@ -6,7 +6,7 @@ import { Profile } from '../../models/profile';
   templateUrl: './about-me.component.html',
   styles: [`
   .avatar-image {
-    background-image: url('http://erikvancraddock.com/css/images/avatar.jpg');
+    background-image: url('assets/images/avatar.jpg');
     background-size: cover;
   }
 

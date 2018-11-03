@@ -16,17 +16,10 @@ import { ArticlesModule } from './articles/articles.module';
 import { MaterialModule } from './material';
 
 import { AppComponent } from './core/containers/app.container';
-import { AuthService } from './core/services/auth.service';
 import { appRoutes } from '../routes';
 import { RouteState } from './shared/models/route-state';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './reducers';
-
-export const jwtOptionsFactory = (authService) => ({
-  tokenGetter: authService.getToken,
-  whitelistedDomains: ['localhost:8080'],
-  blacklistDomains: ['localhost:4200', 'https://erikvan.auth0.com/oauth/token']
-});
 
 @NgModule({
   imports: [
@@ -38,13 +31,6 @@ export const jwtOptionsFactory = (authService) => ({
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     HttpClientModule,
-    JwtModule.forRoot({
-      jwtOptionsProvider: {
-        provide: JWT_OPTIONS,
-        deps: [AuthService],
-        useFactory: jwtOptionsFactory
-      }
-    }),
     BrowserModule,
     BrowserAnimationsModule,
     StoreRouterConnectingModule.forRoot({
@@ -56,7 +42,6 @@ export const jwtOptionsFactory = (authService) => ({
     }),
   ],
   providers: [
-    AuthService,
     { provide: RouterStateSerializer, useClass: RouteState },
   ],
   bootstrap: [AppComponent]
