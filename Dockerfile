@@ -7,6 +7,7 @@ ENV PATH /usr/local/app/node_modules/.bin:$PATH
 
 COPY package.json /usr/local/app/package.json
 COPY ./conf/nginx.conf /usr/local/app/default.conf
+
 RUN npm install
 RUN npm install -g @angular/cli@6.1.1 --unsafe
 

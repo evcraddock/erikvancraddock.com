@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: '192.168.99.100:32684',
+  apiEndpoint: 'localhost:9000',
   authendpoint: '',
   authclientid: '',
   authsecret: '',
