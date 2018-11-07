@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata: 
+  name: erikvancraddock-web
+  labels:
+    app: erikvancraddock-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: erikvancraddock-web
+    spec:
+      containers:
+      - name: erikvancraddock-com
+        image: gcr.io/erikvancraddock/erikvancraddock.com:1.0
+        ports:
+          - containerPort: 80
+      imagePullSecrets:
+      - name: evc-json-key
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: erikvancraddock-web
+spec:
+  type: LoadBalancer
+  selector:
+    app: erikvancraddock-web
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
