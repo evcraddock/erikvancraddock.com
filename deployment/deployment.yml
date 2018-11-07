@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: erikvancraddock-com
-        image: gcr.io/erikvancraddock/erikvancraddock.com:1.0
+        image: gcr.io/erikvancraddock/erikvancraddock.com:latest
         ports:
           - containerPort: 80
       imagePullSecrets:
