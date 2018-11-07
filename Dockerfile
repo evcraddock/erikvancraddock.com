@@ -6,6 +6,7 @@ WORKDIR /usr/local/app
 ENV PATH /usr/local/app/node_modules/.bin:$PATH
 
 COPY package.json /usr/local/app/package.json
+
 RUN npm install
 RUN npm install -g @angular/cli@6.1.1 --unsafe
 
@@ -16,6 +17,7 @@ RUN npm run build
 FROM nginx:1.14.0-alpine
 
 COPY --from=appbuilder /usr/local/app/dist /usr/share/nginx/html
+COPY --from=appbuilder /usr/local/app/conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
