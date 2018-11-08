@@ -16,6 +16,7 @@ import {
 } from './components';
 
 import { ImageService } from './services/image.service';
+import { AnalyticsService } from './services/analytics.service';
 
 export const COMPONENTS = [
   AppComponent,
@@ -40,7 +41,8 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
             ImageService,
-        ]
+            AnalyticsService,
+      ]
     };
   }
 }
