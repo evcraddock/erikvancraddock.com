@@ -20,7 +20,6 @@ export class ArticlesComponent implements OnInit {
   articles$: Observable<Article[]>;
   articlePage$: Observable<Page> = null;
   category$: Observable<string> = null;
-  public profile: Profile;
   public pageEvent: PageEvent;
 
   constructor(
@@ -44,7 +43,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profile = Profile.getDefaultProfile();
     this.store.dispatch(new articlesActions.Load());
     this.changePage();
   }

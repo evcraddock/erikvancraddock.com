@@ -7,7 +7,6 @@ import * as fromRoot from '../../reducers';
 import * as fromArticles from '../../reducers';
 import * as articlesActions from '../../actions/articles';
 import { Article, Page } from '../../../shared/models';
-import { Profile } from '../../../shared/models/profile';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +17,6 @@ export class ArticleSummaryListComponent implements OnInit {
   articles$: Observable<Article[]> = null;
   articlePage$: Observable<Page> = null;
   pageEvent: PageEvent;
-  profile: Profile = null;
 
   constructor(private store: Store<fromRoot.State>) {
       this.articles$ = store.pipe(select(fromArticles.getAllArticles));
@@ -26,7 +24,6 @@ export class ArticleSummaryListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.profile = Profile.getDefaultProfile();
     this.store.dispatch(new articlesActions.Load());
     this.changePage();
   }
