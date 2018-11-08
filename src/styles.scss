@@ -13,7 +13,6 @@ $mat-font-family: 'Helvetica, Arial, sans-serif';
 
 @include angular-material-theme($theme);
 
-
 body {
     font-family: $mat-font-family;
     font-weight: normal;

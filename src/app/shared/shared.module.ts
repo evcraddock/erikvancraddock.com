@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material';
 
-import { AboutMeComponent, NavItemComponent } from './components';
+import { AboutMeComponent, NavItemComponent, PinterestListComponent } from './components';
 import { MarkdownToHtmlPipe, SafePipe } from './pipes';
 
 import { RouterModule } from '@angular/router';
@@ -16,12 +16,14 @@ import { RouterModule } from '@angular/router';
     declarations: [
         AboutMeComponent,
         NavItemComponent,
+        PinterestListComponent,
         MarkdownToHtmlPipe,
         SafePipe
     ],
     exports: [
         AboutMeComponent,
         NavItemComponent,
+        PinterestListComponent,
         MarkdownToHtmlPipe,
         SafePipe
     ]

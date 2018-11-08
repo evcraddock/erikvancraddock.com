@@ -1,9 +1,7 @@
 <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
-    <div fxFlex="20" class="fullwidth">
-        <app-about-me [profile]="profile"></app-about-me>
-    </div>
+    
 
-    <div fxFlex="60" class="fullwidth">
+    <div fxFlex="80" class="fullwidth">
         <h2 class="capitalize">{{ category$ | async }}</h2>
        
         <div *ngIf="hasArticles()">

@@ -1,9 +1,5 @@
 <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="space-between start"  fxLayout.xs="column" fxFlexFill>
-    <div fxFlex="20" class="fullwidth">
-        <app-about-me [profile]="profile"></app-about-me>
-    </div>
-
-    <div fxFlex="60" class="fullwidth">
+    <div fxFlex="80" class="fullwidth">
         <div *ngIf="hasArticles()">
             <span *ngFor="let article of articles$ | async | slice:(articlePage$ | async).startIndex:(articlePage$ | async).endIndex">
                 <app-articles-summaryitem style="padding: 5px;" [article]="article" (select)="selectArticle($event)"></app-articles-summaryitem>
@@ -23,6 +19,5 @@
     </div>
 
     <div fxFlex="20" class="fullwidth">
-
     </div>
 </div>

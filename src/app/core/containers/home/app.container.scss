@@ -1,0 +1,26 @@
+.secondary {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .titlelink {
+      color: white;
+      font-weight: normal;
+      font-size: 16px;
+      text-decoration: none;
+  }
+
+  .titlelink:hover {
+      text-decoration: underline;
+  }
+
+  .nav {
+      padding: 10px;
+  }
+
+  .nav-spacer {
+      flex: 1 1 auto;
+  }
+
+  .main-container {
+      background-color: #f5f8f9;
+  }

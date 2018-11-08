@@ -11,7 +11,8 @@ import { ArticleService } from './services/article.service';
 import {
     ArticlesComponent,
     ArticleDetailComponent,
-    ArticleSummaryListComponent
+    ArticleSummaryListComponent,
+    BookListComponent,
 } from './containers';
 
 import {
@@ -32,6 +33,7 @@ export const COMPONENTS = [
     ArticlesListItemComponent,
     ArticleDetailComponent,
     ArticlesDetailCardComponent,
+    BookListComponent,
   ];
 
 @NgModule({

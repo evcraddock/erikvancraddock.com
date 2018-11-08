@@ -15,7 +15,7 @@ import { CoreModule } from './core/core.module';
 import { ArticlesModule } from './articles/articles.module';
 import { MaterialModule } from './material';
 
-import { AppComponent } from './core/containers/app.container';
+import { AppComponent } from './core/containers/home/app.container';
 import { appRoutes } from '../routes';
 import { RouteState } from './shared/models/route-state';
 import { environment } from '../environments/environment';
