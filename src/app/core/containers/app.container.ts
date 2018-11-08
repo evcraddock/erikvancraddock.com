@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
+import { AnalyticsService } from '../services/analytics.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-evc-app',
@@ -7,7 +9,7 @@ import { MatIconRegistry } from '@angular/material';
 <div class="main-container">
     <mat-toolbar color="primary">
         <div class="" style="width: 100%">
-            <span><a class="titlelink" [routerLink]="['/']">ERIK.VAN.CRADDOCK</a></span>
+            <span><a class="titlelink" [routerLink]="['/']">{{ title }}</a></span>
             <span class="nav"></span>
 
             <app-evc-nav-item routerLink="/family" hint="Family">
@@ -60,10 +62,18 @@ styles: [`
     }
 `],
 })
-export class AppComponent {
-
-    public constructor (public matIconRegistry: MatIconRegistry) {
+export class AppComponent implements OnInit, OnDestroy {
+    public constructor (public matIconRegistry: MatIconRegistry, private analyticsService: AnalyticsService){
         matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
     }
-    title = 'app';
+    title = 'ERIK.VAN.CRADDOCK';
+
+    ngOnInit(): void {
+        if (environment.production) {
+            this.analyticsService.subscribe();
+        }
+    }
+    ngOnDestroy(): void {
+        this.analyticsService.unsubscribe();
+    }
 }
