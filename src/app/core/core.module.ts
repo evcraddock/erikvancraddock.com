@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -17,12 +17,20 @@ import {
 
 import { ImageService } from './services/image.service';
 import { AnalyticsService } from './services/analytics.service';
+import { ConfigService } from './services/config.service';
 
 export const COMPONENTS = [
   AppComponent,
   NotFoundPageComponent,
   ToolbarComponent,
 ];
+
+const appInitializerFn = (appConfig: ConfigService) => {
+  return () => {
+      return appConfig.loadConfig();
+  };
+};
+
 
 @NgModule({
   imports: [
@@ -42,6 +50,13 @@ export class CoreModule {
       providers: [
             ImageService,
             AnalyticsService,
+            ConfigService,
+            {
+                provide: APP_INITIALIZER,
+                useFactory: appInitializerFn,
+                multi: true,
+                deps: [ConfigService]
+            }
       ]
     };
   }

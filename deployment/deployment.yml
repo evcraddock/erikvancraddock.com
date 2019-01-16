@@ -2,8 +2,6 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata: 
   name: erikvancraddock-web
-  labels:
-    app: erikvancraddock-web
 spec:
   replicas: 1
   template:
@@ -13,21 +11,39 @@ spec:
     spec:
       containers:
       - name: erikvancraddock-com
-        image: gcr.io/erikvancraddock/erikvancraddock.com:2.0
+        image: gcr.io/erikvancraddock/erikvancraddock.com:2.02
         ports:
           - containerPort: 80
       imagePullSecrets:
       - name: evc-json-key
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: erikvancraddock-web
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: erikvancraddock-web
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: erikvancraddock-web
+spec:
+  rules:
+  - host: erikvancraddock.com
+    http:
+      paths:
+      - path: /
+        backend: 
+          serviceName: erikvancraddock-web
+          servicePort: 80
+      - path: /api
+        backend:
+          serviceName: goarticles-api
+          servicePort: 8080

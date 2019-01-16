@@ -20,6 +20,7 @@ import { ArticleService } from '../services/article.service';
 import { ImageService } from '../../core/services/image.service';
 import * as fromRoot from '../../reducers';
 import * as fromArticles from '../reducers';
+import { ConfigService } from '../../core/services/config.service';
 
 @Injectable()
 export class ArticlesEffects {
@@ -92,7 +93,7 @@ export class ArticlesEffects {
 
     transformContent(article: Article) {
         const renderer = new marked.Renderer();
-        const url = this.imageService.serverUrl + '/images/' + article.id;
+        const url = this.imageService.getArticleImageServerUrl(article.id);
         renderer.paragraph = function (text: string) {
             const regimg = /{imageservice}/gi;
             const imgtext = text.replace(regimg, url);
@@ -109,6 +110,6 @@ export class ArticlesEffects {
         private actions$: Actions,
         private articleService: ArticleService,
         private router: Router,
-        private imageService: ImageService
+        private imageService: ImageService,
     ) {}
 }
