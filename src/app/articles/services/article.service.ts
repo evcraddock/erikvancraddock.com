@@ -3,16 +3,17 @@ import { HttpClient, HttpParams, HttpResponse, HttpHeaders } from '@angular/comm
 import { Observable } from 'rxjs';
 
 import { IArticle, Article } from '../../shared/models/article';
-import { environment } from '../../../environments/environment';
+import { ConfigService } from '../../core/services/config.service';
 
 @Injectable()
 export class ArticleService {
 
-    private serverUrl = 'http://' + environment.apiEndpoint + '/api';
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private environment: ConfigService) {}
 
     getArticles(params?: HttpParams): Observable<IArticle[]> {
-        const url = this.serverUrl + '/articles';
+        const url = this.environment.config.apiEndpoint + '/articles';
 
         return this.http.get<IArticle[]>(url, {
             params: params
@@ -20,7 +21,7 @@ export class ArticleService {
     }
 
     getArticle(id: string): Observable<IArticle> {
-        const url = this.serverUrl + '/articles/' + id;
+        const url = this.environment.config.apiEndpoint + '/articles/' + id;
 
         return this.http.get<IArticle>(url);
     }

@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: '192.168.99.100:32684',
+  apiEndpoint: '192.168.99.100:31424',
   authendpoint: '',
   authclientid: '',
   authsecret: '',
