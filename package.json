@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
+    "build": "ng build --prod --no-progress",
+    "test": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --no-progress --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

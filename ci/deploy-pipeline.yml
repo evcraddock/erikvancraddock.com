@@ -1,0 +1,36 @@
+---
+resources:
+- name: source
+  type: git
+  source:
+      uri: git@github.com:evcraddock/erikvancraddock.com.git
+      branch: master
+      private_key: ((github.private-key))
+
+- name: version
+  type: semver
+  source:
+      driver: git
+      uri: git@github.com:evcraddock/erikvancraddock.com.git
+      branch: version
+      file: version
+      private_key: ((github.private-key))
+
+- name: docker-file
+  source:
+      repository: gcr.io/erikvancraddock/erikvancraddock.com
+      username: ((gcr.username))
+      password: ((gcr.password))
+  type: docker-image
+
+jobs:
+- name: deploy-gcloud
+  plan:
+  - get: source
+    trigger: false
+  - get: docker-file
+    trigger: false
+  - get: version
+    trigger: false
+  - task: deploy
+    file: source/ci/deploy.yml

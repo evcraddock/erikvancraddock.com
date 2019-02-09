@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: erikvancraddock-com
-        image: gcr.io/erikvancraddock/erikvancraddock.com:2.02
+        image: ((IMAGE_NAME))
         ports:
           - containerPort: 80
       imagePullSecrets:
@@ -34,9 +34,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: erikvancraddock-web
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: erikvancraddock.com
+  - host: www.erikvancraddock.com
     http:
       paths:
       - path: /

@@ -1,0 +1,57 @@
+---
+resources:
+- name: source
+  type: git
+  source:
+      uri: git@github.com:evcraddock/erikvancraddock.com.git
+      branch: master
+      private_key: ((github.private-key))
+
+- name: version
+  type: semver
+  source:
+      driver: git
+      uri: git@github.com:evcraddock/erikvancraddock.com.git
+      branch: version
+      file: version
+      private_key: ((github.private-key))
+
+- name: docker-file
+  source:
+      repository: gcr.io/erikvancraddock/erikvancraddock.com
+      username: ((gcr.username))
+      password: ((gcr.password))
+  type: docker-image
+
+jobs:
+- name: test
+  public: true
+  plan:
+  - get: source
+    trigger: true
+  - task: build-depencencies
+    file: source/ci/build-dependencies.yml
+  - task: run-tests
+    file: source/ci/run-tests.yml
+
+- name: build
+  public: true
+  plan:
+  - get: source
+    passed: [test]
+    trigger: true
+  - get: version
+    params: {bump: patch}
+  - task: build-depencencies
+    file: source/ci/build-dependencies.yml
+  - task: build
+    file: source/ci/build.yml
+
+  - put: docker-file
+    params:
+      build: built
+      tag: version/version
+      tage_as_latest: true
+
+  - put: version
+    params: {file: version/version}
