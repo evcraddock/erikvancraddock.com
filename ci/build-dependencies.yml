@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: node}
+
+inputs:
+  - name: source
+
+outputs:
+  - name: dependency
+
+run:
+  path: source/ci/build-dependencies.sh
