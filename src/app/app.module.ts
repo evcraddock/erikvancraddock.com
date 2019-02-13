@@ -31,7 +31,7 @@ import { reducers, metaReducers } from './reducers';
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'erikvancraddock'}),
     BrowserAnimationsModule,
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
