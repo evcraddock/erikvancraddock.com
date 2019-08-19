@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/node_modules
 
 # IDEs and editors
 /.idea
@@ -29,6 +30,7 @@
 npm-debug.log
 testem.log
 /typings
+*.swp
 
 # e2e
 /e2e/*.js

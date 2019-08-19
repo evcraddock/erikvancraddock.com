@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Router, NavigationEnd } from '@angular/router';
 import { PageEvent } from '@angular/material';
 import { Observable } from 'rxjs';
