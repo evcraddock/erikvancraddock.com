@@ -1,5 +1,5 @@
 ---
-title: Fiesta Bowl Trip – Stranded in Roswell
+title: Stranded in Roswell - Fiesta Bowl Trip
 author: erik
 visible: true
 date: 2011-01-21

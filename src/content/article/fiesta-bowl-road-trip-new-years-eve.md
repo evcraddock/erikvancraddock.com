@@ -1,5 +1,5 @@
 ---
-title: Fiesta Bowl Road Trip – New Years Eve
+title: New Years Eve - Fiesta Bowl Road Trip
 author: erik
 visible: true
 date: 2011-01-26

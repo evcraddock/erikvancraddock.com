@@ -12,7 +12,7 @@ export async function getStaticPaths({ paginate }) {
   return categories.flatMap((s: any) => {
     const tps = articles
       .filter((p) => p.data.categories.includes(s || ''))
-      .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
       return paginate(tps, {
         params: { category: s },
@@ -29,7 +29,7 @@ const { page } = Astro.props;
   title={SITE_TITLE} 
   description={SITE_DESCRIPTION} 
 >
-  <h2 class="mb-0 mt-4 px-2 uppercase">
+  <h2 class="mb-4 mt-4 px-2 uppercase text-slate-200">
     {category} 
   </h2>
   <ArticlesList posts={page.data} previous={page.url.prev} next={page.url.next} />

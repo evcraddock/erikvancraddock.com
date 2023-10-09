@@ -1,5 +1,5 @@
 ---
-title: Fiesta Bowl Road Trip – Day One
+title: Day One - Fiesta Bowl Road Trip
 author: erik
 visible: true
 date: 2011-01-19

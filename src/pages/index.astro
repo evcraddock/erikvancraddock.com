@@ -1,14 +1,23 @@
 ---
+import { getCollection } from 'astro:content';
+
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import ArticleList from '../components/articles/ArticlesList.astro';
+
+const articles = (await getCollection('article'))
+      .filter((a: any) => a.data.visible)
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Layout title="{SITE_TITLE}">
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<main>
-    <h1 class="text-white">{SITE_TITLE}</span></h1>
-		<p class="text-white">
-      {SITE_DESCRIPTION}
-		</p>
+    <h2 class="text-slate-200">Most Recent Articles</h2>
+    <ArticleList posts={articles} size={6} /> 
+    <div class="mt-10 bg-slate-500 px-2 py-0 flex justify-center">
+      <a href="/articles/2" class="relative block rounded bg-transparent m-2 px-3 py-1.5 text-xl text-slate-700 transition-all duration-300 hover:bg-slate-100 dark:text-slate-700 dark:hover:bg-slate-700 dark:hover:text-white no-underline">
+        View More Articles
+      </a>
+    </div>
 	</main>
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { truncateString } from '../../utils';
 
 interface Props {
   post: CollectionEntry<'article'>;
@@ -12,11 +13,13 @@ const heroImage = {
   name: 'no image',
 }
 
-if (post.data && post.data.banner) {
-  heroImage.location = post.data.banner
-  heroImage.name = post.data.title
+const article = post.data;
+if (article && article.banner) {
+  heroImage.location = article.banner
+  heroImage.name = article.title
 }
-const postLink = `/${post.data.date.getFullYear()}/${post.data.date.getMonth() + 1}/${post.slug}`;
+
+const postLink = `/${article.date.getFullYear()}/${article.date.getMonth() + 1}/${post.slug}`;
 
 ---
 <div class="flex lg:w-1/2 xl:w-1/3 flex-wrap group cursor-pointer p-2 bg-slate-500 ">
@@ -29,16 +32,16 @@ const postLink = `/${post.data.date.getFullYear()}/${post.data.date.getMonth() +
     </a>
     <a href={postLink} >
         <span class="inline-block text-md font-medium tracking-wider uppercase underline mt-0 text-slate-100">
-          {post.data.title}
+          {truncateString(article.title, 28)}
         </span>
     </a>
     <div>
     <span class="flex items-center space-x-3">
-      { post.data.tags && post.data.tags.map((tag: any) => {
+      { article.categories && article.categories.map((cat: string) => {
         return (
-        <a href={`/${tag}/`}>
+        <a href={`/categories/${cat}/`}>
           <span class="inline-block text-xs font-medium tracking-wider uppercase mt-0 text-slate-100">
-            {tag}
+            {cat}
           </span>
         </a>
         )})
@@ -50,7 +53,7 @@ const postLink = `/${post.data.date.getFullYear()}/${post.data.date.getMonth() +
           <span>-</span>
         </span>
       <span>
-        <FormattedDate date={post.data.date} />
+        <FormattedDate date={article.date} />
       </span>
     </span>
     </div>

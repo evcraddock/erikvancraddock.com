@@ -1,5 +1,5 @@
 ---
-title: Fiesta Bowl Road Trip – Boomer Sooner!
+title: Boomer Sooner! - Fiesta Bowl Road Trip
 author: erik
 visible: true
 date: 2011-02-01

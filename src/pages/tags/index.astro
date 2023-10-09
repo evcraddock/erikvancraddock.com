@@ -4,10 +4,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 
-const posts = (await getCollection('article'))
-  .filter((a) => a.data.visible)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
+const posts = (await getCollection('article')).filter((a) => a.data.visible)
 const tags = [...new Set(posts.map((p) => p.data.tags).flat())];
 ---
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -18,7 +15,7 @@ const tags = [...new Set(posts.map((p) => p.data.tags).flat())];
           tags.map((t) => {
           return (
 						<li>
-              <a href={`/${t}`}>{t}</a>
+              <a href={`/tags/${t}`}>{t}</a>
 						</li>
           )})
 				</ul>

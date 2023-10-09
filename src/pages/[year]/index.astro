@@ -5,10 +5,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import Layout from '../../layouts/Layout.astro';
 import ArticleList from '../../components/articles/ArticlesList.astro';
 
-// const posts = (await getCollection('article'))
-//   .filter((a) => a.data.visible)
-//   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
 export async function getStaticPaths() {
   const articles = (await getCollection('article'))
     .filter((a: any) => a.data.visible);
@@ -25,25 +21,6 @@ export async function getStaticPaths() {
 
     return { params: { year: y }, props: { posts: posts }}
   });
-
-  // return years.flatMap((y: number) => {
-  //   const posts = articles.filter((p: any) => {
-  //     return p.data.date.getFullYear() === y;
-  //   })
-  //   .sort((a: any, b: any) => a.data.date.valueOf() - b.data.date.valueOf());
-
-  //   return {
-  //     params: { posts: posts }
-  //   }
-  // });
-
-    // return articles.map((p: any) => {
-    //   return {
-    //     params: { year: year},
-    //   };
-    // });
-
-    // return articles;
 };
 
 const { posts } = Astro.props;
