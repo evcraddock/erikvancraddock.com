@@ -9,6 +9,7 @@ categories:
 tags:
 - guitar
 - history
+people:
 - Rodney Craddock
 banner: /images/first-guitar.jpg
 ---

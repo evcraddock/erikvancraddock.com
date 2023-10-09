@@ -6,7 +6,7 @@ import ArticlesList from '../../../components/articles/ArticlesList.astro';
 
 export async function getStaticPaths({ paginate }) {
   const articles = (await getCollection('article'))
-      .filter((a) => a.data.visible)
+      .filter((a) => a.data.visible && a.data.tags)
   const tags = [...new Set(articles.map((p) => p.data.tags).flat())];
 
   return tags.flatMap((s) => {
@@ -15,7 +15,7 @@ export async function getStaticPaths({ paginate }) {
       .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
       return paginate(tps, {
-        params: { tag: s },
+        params: { tag: s || '' },
         pageSize: 6,
       });
   });

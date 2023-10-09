@@ -7,9 +7,10 @@ categories:
   - family
   - music
 tags:
-- Rodney Craddock
 - recording
 - Binger Hill
+people: 
+- Rodney Craddock
 banner: /images/Odis-and-Otis-Ray.png
 ---
 Some things quite clearly belong in this world. They come to us in a variety of different packages. We have experienced them at some point with all of our senses. They are easy to identify. When you see them, even for the first time, it is familiar. The taste and smell is pleasant. You could swear that you’ve heard them before. It just feels right. That is how I perceive art.

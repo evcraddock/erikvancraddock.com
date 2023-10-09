@@ -5,8 +5,9 @@ visible: true
 date: 2012-10-24
 categories:
   - music
-tags:
+people:
 - Rodney Craddock
+tags:
 - recording
 - Binger Hill
 

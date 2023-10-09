@@ -18,6 +18,7 @@ const tags = [...new Set(posts.map((p) => p.data.tags).flat())];
               <a href={`/tags/${t}`}>{t}</a>
 						</li>
           )})
+          }
 				</ul>
 			</section>
 		</main>

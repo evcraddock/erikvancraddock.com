@@ -7,6 +7,7 @@ categories:
   - book review
 tags:
 - book
+people:
 - Howard Zinn
 banner: /images/peoples-history.jpg
 ---

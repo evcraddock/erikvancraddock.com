@@ -5,7 +5,7 @@ export const article = defineCollection({
 	schema: z.object({
 		title: z.string(),
     author: z.string(),
-    tags: z.array(z.string()),
+    tags: z.array(z.string()).optional(),
     categories: z.array(z.string()),
     visible: z.boolean(),
 		// Transform string to Date object
@@ -18,6 +18,7 @@ export const article = defineCollection({
 			.optional()
 			.transform((str) => (str ? new Date(str) : undefined)),
 		banner: z.string().optional(),
+    people: z.array(z.string()).optional(),
 	}),
 });
 

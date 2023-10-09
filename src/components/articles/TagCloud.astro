@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('article')).filter((a) => a.data.visible && a.data.tags)
+const tags = [...new Set(posts.map((p) => p.data.tags).flat())];
+---
+<div
+  class="w-full mt-4 block rounded-lg bg-slate-500 text-center shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+  <div
+    class="border-b-2 border-black-100 px-6 py-3">
+    <h5
+      class="mb-4 text-xl font-medium leading-tight text-black-800">
+      Tag Cloud
+    </h5>
+    <div class="flex flex-wrap gap-2">
+    {
+      tags.map((t: any) => {
+      return (<a 
+        class="tag px-2 py-1 rounded bg-slate-600 text-slate-200 text=sm hover:text-slate-500 transition duration-200 ease-in-out" 
+          href={`/tags/${t}`}>{t}
+        </a>);
+      })
+    }
+    </div>
+  </div>
+</div>
+        
+
+

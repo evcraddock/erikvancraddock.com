@@ -8,6 +8,7 @@ categories:
 tags:
 - trip
 - airplane
+people:
 - Ron Philips
 banner: /images/up-in-the-air.jpg
 ---

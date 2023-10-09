@@ -7,6 +7,7 @@ categories:
   - book review
 tags:
 - productivity
+people:
 - Seth Godin
 banner: /images/poke-the-box.jpg
 ---

@@ -7,6 +7,7 @@ categories:
   - music
 tags:
 - friends
+people:
 - Nathan Lanier
 - Misti Lanier
 ---

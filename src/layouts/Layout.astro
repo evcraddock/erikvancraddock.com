@@ -4,6 +4,7 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import Bio from '../components/Bio.astro';
 import SocialMedia from '../components/layout/SocialMedia.astro';
+import TagCloud from '../components/articles/TagCloud.astro';
 
 interface Props {
 	title: string;
@@ -24,6 +25,7 @@ const { title, description } = Astro.props;
       <aside class="w-full md:w-1/4 flex flex-col items-center px-3 mt-4">
         <Bio /> 
         <SocialMedia />
+        <TagCloud />
       </aside>
       <section class="w-full md:w-3/4 flex flex-col px-3">
         <article class="max-w-screen-xl px-5 pt-1 pb-5 prose prose-headings:h-8 prose-p:text-lg bg-slate-600"> 
