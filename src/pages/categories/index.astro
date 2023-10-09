@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+import Layout from '../../layouts/Layout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+const posts = (await getCollection('article'))
+  .filter((a) => a.data.visible)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categories = [...new Set(posts.map((p) => p.data.categories).flat())];
+---
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+		<main>
+			<section>
+				<ul>
+					{
+          categories.map((c) => {
+          return (
+						<li>
+              <a href={`/categories/${c}`}>{c}</a>
+						</li>
+          )})
+				</ul>
+			</section>
+		</main>
+</Layout>
+

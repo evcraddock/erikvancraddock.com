@@ -1,0 +1,29 @@
+---
+title: The Ball and Chain of Experience
+author: erik
+visible: true
+date: 2013-02-19
+categories:
+  - ideas
+tags:
+- comment
+banner: /images/Elevator-Store.jpg
+---
+
+Children are unburdened by the ball and chain of experience. They typically see the world for what it is and it isn’t nearly as complicated as we adults seem to think. For example, my youngest son is almost four years old, he has a mind like a trap. He has very concrete expectations for life. He wants to eat when he is hungry and drink when thirsty. Mostly, he wants to play. He is on a continual quest for anything new; new games, new friends and new words. Each offers him new opportunities to play. When there is somewhere to go he wants to tag along. His prime directive is to have fun. He faces down any act of fun repression with fierce opposition.
+
+The boy looks at the world as his personal playground. The different pieces of equipment on the playground are all there solely for his enjoyment. He associates the places he goes with their purpose. More specifically, he associates them with his purpose for going there. When we go to the mall, it isn’t for shopping. We are there to ride the escalator. So of course the mall is the Escalator Store. Twice a week he attends a kiddy martial arts class. He has dubbed it the Fight Store because it’s where he goes to fight. There is also the Haircut store, the Jump store (gym), several Food stores and many more Stores both identified and yet to be discovered. If he had his way he’d play in every store or piece of the playground simultaneously all of the time. He has a hard time envisioning a world where he doesn’t get his way.
+
+Childhood at its core is an egocentric enterprise focused almost entirely in the now. With age the focus shifts slightly outward and is aimed more towards the very near future. As young adults we idealize our future lives and are eager to connect with new people. Eventually we become primarily concerned with maintaining our present state of affairs. The older we get the more interested we are in our own past and our children’s future. Have you ever noticed that history and genealogy are mostly adult hobbies?
+
+Our personal legacy is like the halls of a museum. We create exhibits to honor certain events as we go about our lives. As we get older, it is tempting to build shrines to some of those old exhibits and worship them. For reasons I don’t understand the older exhibits feel more authentic. At some point, we more closely identify with what we’ve done than what we want to do. Until finally we become bored with our own museum entirely. Children don’t look back. That story is dull. The plot hasn’t been flushed out yet. All the good stuff is in front of them. They are much more interested in creating exhibits than looking at them.
+
+When we are young the future is mysterious and exciting, anything is possible. Adults understand that those endless possibilities are not necessarily all good. In fact many of them are dangerous. The difference between a child’s outlook and that of an adult is what we call naivety. Adults have become adept at mitigating risk and liability. Adults have learned to fear while children believe with innocence. I’m starting to realize that children don’t really lose that innocence. Instead it is corrupted, mutated. For adults much of life still seems like a magic trick. We don’t really understand the world any better. We have, however, learned to fear what we don’t understand. It is fear that evolves into anxiety, anger and hate. The fear is what corrupts us.
+
+Most of us do everything we can to avoid things that make us uncomfortable. We’ve learned to be cautious. We don’t easily take chances because we understand that there are real consequences to our actions. We tend to forget that our greatest triumphs were also our riskiest ventures. That’s just how it works. The greater the reward the harder it is to achieve. The likelihood of success is directly proportional to the difficulty of the task. The events that result in the most joy are the ones with the largest stakes. What about your life are you most proud of? Chances are, it is also the one in which you put your life on the line the most. This is how it should be. Computer and robots make decisions based on precise analytical calculations. Life should not be a series of events undertaken based on their statistical chances of success.
+
+Children are unburdened by the ball and chain of experience. They are looking forward. Their eyes are on the reward. Failure is not a concern. They run headlong into whatever flight of fancy that they are currently dreaming. Eventually this gets them in trouble. They learn that the cost of experience is typically paid in heartache and pain. As they grow older they get better at evaluating risk. They get better at avoiding situations that could get ugly. They become cautious, they become adults.
+
+Ironically, it is childlike audacity that inspires us. It is the person that risks everything to create something out of nothing that we value the most. This is because it is rare. We see musicians, artists and actors and we are envious. It doesn’t even matter much the merit of the persons antics. If it is dangerous or takes courage we are intrigued. Honestly, the moron taking the risk need not even realize it as long as the viewer considers it risky. Anyone that has become caught up watching a reality tv show knows. We all understand at some level that taking the risk is often itself the reward. It makes us feel alive. It reminds us of the time in our lives before life kicked us in the teeth. It tempts us to throw caution to the wind and risk everything.
+
+well, maybe not everything. But we can spare a little pride can’t we? My own in-brain statistical analysis suggests that for maximum effectiveness a little more risk is required. I probably shouldn’t change everything overnight but, you know, baby steps.

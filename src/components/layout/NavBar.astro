@@ -1,0 +1,21 @@
+---
+import NavSidebar from './NavSidebar';
+import HeaderLink from "./HeaderLink.astro";
+---
+<nav class="container flex justify-between px-4 py-4 mx-auto">
+  <div>
+    <a
+        class="my-1 mr-2 flex items-center font-bold text-slate-200 lg:mb-0 lg:mt-0"
+        href="/">
+        <span class="px-2 font-large uppercase">erik.van.craddock</span>
+    </a>
+  </div>
+  <div class="hidden space-x-8 lg:flex text-slate-200 uppercase">
+    <HeaderLink href="/articles">All</HeaderLink>
+    <HeaderLink href="/categories/family">Family</HeaderLink>
+    <HeaderLink href="/categories/ideas">Ideas</HeaderLink>
+    <HeaderLink href="/categories/work">Work</HeaderLink>
+    <HeaderLink href="https://www.youtube.com/@Erikvann">Music</HeaderLink>
+  </div>
+  <NavSidebar client:only="react"/> 
+</nav>

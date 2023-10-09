@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
+import Layout from '../../../layouts/Layout.astro';
+import ArticlesList from '../../../components/articles/ArticlesList.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const articles = (await getCollection('article'))
+      .filter((a) => a.data.visible)
+  const categories = [...new Set(articles.map((p) => p.data.categories).flat())];
+
+  return categories.flatMap((s: any) => {
+    const tps = articles
+      .filter((p) => p.data.categories.includes(s || ''))
+      .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+
+      return paginate(tps, {
+        params: { category: s },
+        pageSize: 6,
+      });
+  });
+}
+
+const { category } = Astro.params;
+const { page } = Astro.props;
+---
+
+<Layout 
+  title={SITE_TITLE} 
+  description={SITE_DESCRIPTION} 
+>
+  <h2 class="mb-0 mt-4 px-2 uppercase">
+    {category} 
+  </h2>
+  <ArticlesList posts={page.data} previous={page.url.prev} next={page.url.next} />
+</Layout>

@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPost from '../../../layouts/ArticleLayout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro'
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('article')).filter((a: any) => a.data.visible);
+  
+  const ym: [number,number | null][] = articles.map((p) => {
+    return [p.data.date.getFullYear(), p.data.date.getMonth()]    
+  });
+  
+  return ym.flatMap(([y,m]) => {
+    const posts = articles
+    .filter((p: any) => {
+      return (p.data.date.getFullYear() == y && p.data.date.getMonth() == m)
+    });
+
+
+    return posts.map((post: any) => ({
+      params: { 
+        year: y,
+        month: m + 1,
+        slug: post.slug,
+      },
+      props: { post },
+    }));
+  });
+}
+
+const { post } = Astro.props;
+
+const heroImage = {
+location: '/no-image.jpg',
+  name: 'hero image',
+}
+
+if (post.data && post.data.banner !== '') {
+  heroImage.location = post.data.banner || '';
+  heroImage.name = post.data.title;
+}
+
+const postProps = {
+  ...post.data,
+  slug: post.slug,
+}
+
+const { Content } = await post.render();
+---
+<BlogPost {...postProps}>
+  <div class="mb-2 mt-0">
+  <h1 class="text-slate-200 mb-2">{post.data.title}</h1>
+  <h5 class="mb-4">
+    {post.data.date &&
+      <FormattedDate date={post.data.date} />
+    }
+  </h5>
+      {heroImage && 
+        <img class="mt-0 mb-0 w-full" src={heroImage.location} alt={heroImage.name} />
+      }
+  </div>
+	
+  <a href="javascript:history.back()">back</a>
+  <hr class="mb-4 mt-4" />
+	<Content />
+</BlogPost>
+

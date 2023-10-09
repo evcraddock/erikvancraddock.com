@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../../consts';
+import Layout from '../../../layouts/Layout.astro';
+import ArticleList from '../../../components/articles/ArticlesList.astro';
+
+export async function getStaticPaths() {
+  const articles = (await getCollection('article')).filter((a: any) => a.data.visible);
+  
+  const ym: [number,number | null][] = articles.map((p) => {
+  return [p.data.date.getFullYear(), p.data.date.getMonth()]    
+  });
+
+  return ym.flatMap(([y,m]) => {
+    const posts = articles
+    .filter((p: any) => {
+     if (m != null) {
+        return (p.data.date.getFullYear() == y && p.data.date.getMonth() == m)
+     }
+
+     return p.data.date.getFullYear() == y
+    })
+    .sort((a: any, b: any) => a.data.date.valueOf() - b.data.date.valueOf())
+
+    return { 
+      params: { year: y, month: m + 1 },
+      props: { posts: posts },
+    }
+  });
+}
+
+const { posts } = Astro.props;
+const { year, month } = Astro.params;
+---
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} >
+   <h2 class="mb-4 mt-4 px-2 uppercase text-slate-200">
+     Articles published in { month }
+   </h2>
+   <ArticleList posts={posts || null} /> 
+</Layout>
+
+

@@ -1,0 +1,14 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="{SITE_TITLE}">
+	<main>
+    <h1 class="text-white">{SITE_TITLE}</span></h1>
+		<p class="text-white">
+      {SITE_DESCRIPTION}
+		</p>
+	</main>
+</Layout>
