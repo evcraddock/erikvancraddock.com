@@ -1,0 +1,15 @@
+image: archlinux
+packages: 
+  - nodejs
+  - npm
+  - docker
+sources:
+  - https://git.sr.ht/~erikcraddock/erikvancraddock.com
+tasks:
+  - setup: |
+      sudo systemctl enable --now docker
+      npm install astro
+  - build: |
+      cd erikvancraddock.com
+      npm install
+      npm run build
