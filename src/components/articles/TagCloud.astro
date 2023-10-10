@@ -12,6 +12,8 @@ const tags = [...new Set(posts.map((p) => p.data.tags).flat())];
       class="mb-4 text-xl font-medium leading-tight text-black-800">
       Tag Cloud
     </h5>
+  </div>
+  <div class="p-6">
     <div class="flex flex-wrap gap-2">
     {
       tags.map((t: any) => {

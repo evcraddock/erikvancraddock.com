@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('article')).filter((a) => a.data.visible && a.data.categories)
+const cats = [...new Set(posts.map((p) => p.data.categories).flat())];
+---
+<div
+  class="w-full mt-4 block rounded-lg bg-slate-500 text-center shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+  <div
+    class="border-b-2 border-black-100 px-6 py-3">
+    <h5
+      class="mb-4 text-xl font-medium leading-tight text-black-800">
+      Categories
+    </h5>
+  </div>
+  <div class="p-6">
+    <ul>
+			{
+      cats.map((c) => {
+      return (
+				<li class="text-left">
+          <a class="uppercase" href={`/categories/${c}`}>{c}</a>
+				</li>
+      )})
+		</ul>
+  </div>
+</div>
+        
+
+

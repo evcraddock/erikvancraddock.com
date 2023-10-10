@@ -8,7 +8,7 @@ const NavSidebar = () => {
       <button onClick={() => setOpen(true)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-6 h-6 text-white"
+        className="w-6 h-6 text-slate-200"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -33,7 +33,7 @@ const NavSidebar = () => {
         >
           <div
             id="sidebar"
-            className={`fixed right-0 top-0 w-[250px] h-screen bg-blue-600 pt-20 p-6 z-50`}
+            className={`fixed right-0 top-0 w-[250px] h-screen bg-slate-600 pt-20 p-6 z-50`}
           >
             <button
               onClick={() => setOpen(false)}
@@ -52,7 +52,7 @@ const NavSidebar = () => {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex items-center text-left">
-                        <span className="mr-4 text-white uppercase semi-bold">Articles</span>
+                        <span className="mr-4 text-slate-200 uppercase semi-bold">Articles</span>
                         <img
                           className=""
                           src={`/icon-arrow-${open ? "up" : "down"}.svg`}
@@ -61,10 +61,10 @@ const NavSidebar = () => {
                       </Disclosure.Button>
                       <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                         <ul className="flex flex-col space-y-3">
-                          <li className="cursor-pointer text-white uppercase semi-bold">
+                          <li className="cursor-pointer text-slate-200 uppercase semi-bold">
                             <a href="/articles">All</a>
                           </li>
-                          <li className="cursor-pointer text-white uppercase semi-bold">
+                          <li className="cursor-pointer text-slate-200 uppercase semi-bold">
                             <a href="/obituaries">Obituaries</a>
                           </li>
                         </ul>
@@ -73,22 +73,24 @@ const NavSidebar = () => {
                   )}
                 </Disclosure>
               </li>
-              <li className="cursor-pointer text-white uppercase semi-bold">
+              <li className="cursor-pointer text-slate-200 uppercase semi-bold">
                 <a href="/articles">All Articles</a>
               </li>
-              <li className="cursor-pointer text-white uppercase semi-bold">
-                <a href="/newsletters">Newsletters</a>
+              <li className="cursor-pointer text-slate-200 uppercase semi-bold">
+                <a href="/categories/family">Family</a>
               </li>
-              <li className="cursor-pointer text-white uppercase semi-bold">
-                <a href="/recollections">Recollections</a>
+              <li className="cursor-pointer text-slate-200 uppercase semi-bold">
+                <a href="/categories/ideas">Ideas</a>
               </li>
-              <li className="cursor-pointer text-white uppercase semi-bold">
-                <a href="/lore">Lore</a>
+              <li className="cursor-pointer text-slate-200 uppercase semi-bold">
+                <a href="/categories/work">Work</a>
               </li>
-              <li className="cursor-pointer text-white uppercase semi-bold">
-                <a href="/rambling-rose">Rambling Roses</a>
+              <li className="cursor-pointer text-slate-200 uppercase semi-bold">
+                <a href="https://www.youtube.com/@Erikvann">Musc Roses</a>
               </li>
-              <li className="hidden">About</li>
+              <li className="cursor-pointer text-slate-200 uppercase semi-bold">
+                <a href="/about">About</a>
+              </li>
             </ul>
           </div>
 

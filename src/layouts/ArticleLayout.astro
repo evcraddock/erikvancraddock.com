@@ -3,6 +3,8 @@ import BaseHead from '../components/layout/Basehead.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import Bio from '../components/Bio.astro';
+import SocialMedia from '../components/layout/SocialMedia.astro';
+import Categories from '../components/articles/Categories.astro';
 
 interface Props {
 	title: string;
@@ -17,14 +19,16 @@ const { title, description } = Astro.props;
 	<head>
     <BaseHead title={title} description={description} />	
 	</head>
-	<body class="bg-slate-900">
+	<body class="bg-slate-600 text-gray-100">
     <Header />
     <main class="container h-screen mx-auto flex flex-wrap py-1">
-      <aside class="w-full md:w-1/4 flex flex-col items-center px-3">
+      <aside class="hidden w-full md:w-1/4 lg:flex flex-col items-center px-3 mt-4 mb-4">
         <Bio />
+        <SocialMedia />
+        <Categories />
       </aside>
       <section class="w-full md:w-3/4 flex flex-col px-3">
-        <article class="max-w-screen-xl h-full px-5 pt-1 pb-5 bg-slate-600 prose prose-headings:h-8 prose-p:font-light prose-p:text-lg prose-p:text-slate-100 prose-ul:list-none prose-li:text-slate-200 prose-h3:text-slate-200 prose-h5:text-slate-200 prose-h5:font-bold prose-h3:font-bold prose-a:text-slate-200 prose-a:font-bold">
+        <article class="max-w-screen-xl h-full mt-4 px-5 pt-1 pb-5 bg-slate-500 prose prose-headings:h-8 prose-p:font-light prose-p:text-lg prose-p:text-slate-100 prose-ul:list-none prose-li:text-slate-200 prose-h3:text-slate-200 prose-h5:text-slate-200 prose-h5:font-bold prose-h3:font-bold prose-a:text-slate-200 prose-a:font-bold">
 			  	  <slot />
 			    </article>
 		      <Footer />

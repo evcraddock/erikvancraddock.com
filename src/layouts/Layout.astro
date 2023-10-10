@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer.astro';
 import Bio from '../components/Bio.astro';
 import SocialMedia from '../components/layout/SocialMedia.astro';
 import TagCloud from '../components/articles/TagCloud.astro';
+import Categories from '../components/articles/Categories.astro';
 
 interface Props {
 	title: string;
@@ -22,12 +23,13 @@ const { title, description } = Astro.props;
 	<body class="bg-slate-600 text-gray-100"></body>
     <Header />
     <main class="container h-screen mx-auto flex flex-wrap py-1">
-      <aside class="w-full md:w-1/4 flex flex-col items-center px-3 mt-4">
+      <aside class="hidden w-full md:w-1/4 lg:flex flex-col items-center px-3 mt-4 mb-4">
         <Bio /> 
         <SocialMedia />
+        <Categories />
         <TagCloud />
       </aside>
-      <section class="w-full md:w-3/4 flex flex-col px-3">
+      <section class="w-full md:w-3/4 flex flex-col">
         <article class="max-w-screen-xl px-5 pt-1 pb-5 prose prose-headings:h-8 prose-p:text-lg bg-slate-600"> 
           <slot />
 			  </article>
