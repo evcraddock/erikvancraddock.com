@@ -12,7 +12,7 @@ tags:
 - Binger Hill
 
 ---
-Rodney Craddock and I have been recording music together almost constantly since [I visited his place](/2012/09/05/a-3-year-old-storm-hit-montgomery-tx/) a few months ago. While I was there, we threw our first song together in pretty much one day. We wrote the song and recorded all of his parts while I was at his house. We turned on the video camera. We recorded as we played and Rodney used that footage to create a video. After I got home, I finished things up. The result was a little tune about my dog Sugar’s lack of fondness for bad weather.
+Rodney Craddock and I have been recording music together almost constantly since [I visited his place](/2012/09/a-3-year-old-storm-hit-montgomery-tx/) a few months ago. While I was there, we threw our first song together in pretty much one day. We wrote the song and recorded all of his parts while I was at his house. We turned on the video camera. We recorded as we played and Rodney used that footage to create a video. After I got home, I finished things up. The result was a little tune about my dog Sugar’s lack of fondness for bad weather.
 
 We had such a great time that we began working on another song. This time Rodney had some lyrics that he had thrown together. He shared them with me and I made a few suggestions. The next thing I knew we had written the most country song ever. Due to the subject matter, which I can’t disclose yet, it had to be that way. Country isn’t really my thing but here was this song that was as country as it gets. And somehow I wrote the music.
 

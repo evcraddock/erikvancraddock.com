@@ -16,11 +16,15 @@ export async function getStaticPaths() {
       return (p.data.date.getFullYear() == y && p.data.date.getMonth() == m)
     });
 
+    const mm = (m + 1).toLocaleString('en-US', {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    });
 
     return posts.map((post: any) => ({
       params: { 
         year: y,
-        month: m + 1,
+        month: mm,
         slug: post.slug,
       },
       props: { post },

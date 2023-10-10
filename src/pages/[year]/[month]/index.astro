@@ -23,8 +23,13 @@ export async function getStaticPaths() {
     })
     .sort((a: any, b: any) => a.data.date.valueOf() - b.data.date.valueOf())
 
+    const mm = (m + 1).toLocaleString('en-US', {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    });
+
     return { 
-      params: { year: y, month: m + 1 },
+      params: { year: y, month: mm },
       props: { posts: posts },
     }
   });

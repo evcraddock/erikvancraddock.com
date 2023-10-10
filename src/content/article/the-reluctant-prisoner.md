@@ -5,8 +5,8 @@ visible: true
 date: 2011-02-24
 categories:
   - family
-tags:
-- ethan
+people:
+- Ethan Craddock
 banner: /images/prisoner.jpg
 ---
   

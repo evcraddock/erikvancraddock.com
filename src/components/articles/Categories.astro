@@ -5,7 +5,7 @@ const posts = (await getCollection('article')).filter((a) => a.data.visible && a
 const cats = [...new Set(posts.map((p) => p.data.categories).flat())];
 ---
 <div
-  class="w-full mt-4 block rounded-lg bg-slate-500 text-center shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+  class="w-full mt-2 block rounded-lg bg-slate-500 text-center shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
   <div
     class="border-b-2 border-black-100 px-6 py-3">
     <h5
