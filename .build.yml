@@ -17,6 +17,8 @@ tasks:
       npm run build
   - deploy: |
       cd erikvancraddock.com
+      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt
+
       export VERSION=$(node -e 'console.log(require("./package.json").version)')
       docker build -t evcraddock/erikvancraddock:$VERSION.$JOB_ID .
       cat ~/.docker-secret | docker login -u evcraddock --password-stdin 
