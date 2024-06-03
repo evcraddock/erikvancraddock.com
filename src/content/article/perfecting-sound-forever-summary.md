@@ -4,10 +4,10 @@ author: erik
 visible: true
 date: 2012-10-04
 categories:
-  - book review
-  - music
+  - review
 tags:
-- recording
+  - recording
+  - music
 banner: /images/perfecting-sound.jpg
 ---
 Thomas Edison invented the phonograph in 1877 in an effort to accurately record sound. He aimed to create a device that could document what was heard much the same way a photograph documented what was seen. It didn’t take long until it became apparent that the primary draw of the phonograph was not to document sound but to be entertained by it.

@@ -4,10 +4,10 @@ author: erik
 visible: true
 date: 2013-08-25
 categories:
-  - book review
-  - productivity
+  - review
   - work
 tags:
+  - productivity
   - Goals
   - GTD
 banner: /images/gtd.jpg

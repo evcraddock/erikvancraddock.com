@@ -4,9 +4,10 @@ author: erik
 visible: true
 date: 2011-04-19
 categories:
-  - book review
+  - review
 tags:
-- book
+  - book
+  - history
 people:
 - Howard Zinn
 banner: /images/peoples-history.jpg

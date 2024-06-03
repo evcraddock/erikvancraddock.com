@@ -4,7 +4,7 @@ author: erik
 visible: true
 date: 2011-03-18
 categories:
-  - book review
+  - review
 tags:
 - productivity
 people:
